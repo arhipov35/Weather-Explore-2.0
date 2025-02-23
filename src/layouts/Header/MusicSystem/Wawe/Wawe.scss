@@ -1,0 +1,57 @@
+@use "../../../../assets/styles/variables" as vW;
+@use "../../../../assets/styles/mixins" as mW;
+
+@keyframes moveWave {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes stopWave {
+  100% {
+    transform: translateX(0%);
+  }
+}
+.wave {
+  @include mW.flex-column-center;
+  width: 3rem;
+  height: auto; /* Забираємо фіксовану висоту та використовуємо aspect-ratio */
+  aspect-ratio: 1 / 1;
+  gap: 0.25rem;
+  border-radius: 3.5rem;
+  background: vW.$background;
+  overflow: hidden;
+  .wave-circle {
+    @include mW.flex-column-between-start;
+    width: 1.5rem;
+    height: 1.6875rem;
+    padding: 0.3125rem 0;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .wave-svg {
+    animation: moveWave 3s linear infinite;
+    box-sizing: content-box;
+
+    .wave-path {
+      transition: d 0.5s ease, stroke 0.5s ease;
+    }
+  }
+
+  &.playing {
+    .wave-svg {
+      animation-play-state: running;
+    }
+  }
+
+  &.paused {
+    .wave-svg {
+      animation-play-state: paused;
+      animation: stopWave 1s linear;
+    }
+  }
+}

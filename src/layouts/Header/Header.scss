@@ -1,0 +1,17 @@
+@use "../../assets/styles/variables" as vH;
+@use "../../assets/styles/mixins" as mH;
+header {
+  .navbar-section {
+    @include mH.flex-align-center;
+    .navbar-brand {
+      color: vH.$third-color;
+      text-align: center;
+      font-family: vH.$font-family;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.25; /* 100% */
+      letter-spacing: 0.01875rem;
+    }
+  }
+}
