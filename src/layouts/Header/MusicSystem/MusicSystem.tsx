@@ -3,29 +3,49 @@ import Wave from "./Wawe/Wawe";
 import "./MusicSystem.scss";
 import useAudioPlayer from "../../../hooks/useAudioPlayer";
 import { useCallback, useEffect, useState } from "react";
+import { playlist } from "./playlist";
+
 function MusicSystem() {
-  const [startTime, setStartTime] = useState<number>(0);
+  const [currentSong, setCurrentSong] = useState<string>("");
+  const [playedSongs, setPlayedSongs] = useState<Set<string>>(new Set());
   const { isPlaying, volume, onVolumeChange, togglePlayback } =
     useAudioPlayer();
 
-  const generateRandomStart = useCallback(() => {
-    return Math.floor(Math.random() * 6660);
-  }, []);
+  const selectRandomSong = useCallback(() => {
+    if (playedSongs.size >= playlist.length - 1) {
+      setPlayedSongs(new Set([currentSong]));
+    }
+
+    const availableSongs = playlist.filter((song) => !playedSongs.has(song));
+
+    const randomIndex = Math.floor(Math.random() * availableSongs.length);
+    const selectedSong = availableSongs[randomIndex];
+
+    setPlayedSongs((prev) => new Set([...prev, selectedSong]));
+
+    return selectedSong;
+  }, [playedSongs, currentSong]);
 
   useEffect(() => {
-    setStartTime(generateRandomStart());
+    const firstSong = playlist[Math.floor(Math.random() * playlist.length)];
+    setCurrentSong(firstSong);
+    setPlayedSongs(new Set([firstSong]));
   }, []);
+
+  const handleSongEnd = useCallback(() => {
+    setCurrentSong(selectRandomSong());
+  }, [selectRandomSong]);
 
   return (
     <>
       <ReactPlayer
-        url={`https://youtu.be/DCcQ-HOhOXk?start=${startTime}`}
+        url={currentSong}
         playing={isPlaying}
         controls={false}
         width="0"
         height="0"
         volume={volume / 100}
-        onEnded={() => setStartTime(generateRandomStart())}
+        onEnded={handleSongEnd}
       />
       <div className="music-system">
         <div className="music-sytem-range">
