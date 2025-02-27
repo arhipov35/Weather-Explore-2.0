@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface FirstCardProps {
   onSubmit: (e: React.FormEvent) => void;
@@ -7,12 +7,12 @@ interface FirstCardProps {
   loading: boolean;
 }
 
-export const FirstCard: React.FC<FirstCardProps> = ({
+export function FirstCard({
   onSubmit,
   cityInput,
   onCityInputChange,
-  loading
-}) => {
+  loading,
+}: FirstCardProps) {
   return (
     <div className="w-96 p-6 bg-white rounded-lg shadow-lg">
       <form onSubmit={onSubmit} className="space-y-4">
@@ -33,4 +33,4 @@ export const FirstCard: React.FC<FirstCardProps> = ({
       </form>
     </div>
   );
-};
+}

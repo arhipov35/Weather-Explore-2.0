@@ -35,6 +35,4 @@ export const playlist = [
     'https://youtu.be/R2t8pHCbVFc',
     'https://youtu.be/_gbJAB0k_LU',
     'https://youtu.be/cO6FjSqivHU',
-    '',
-    // Add more songs as needed
 ];

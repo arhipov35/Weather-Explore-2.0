@@ -115,10 +115,7 @@ export function HomePage() {
       }
 
       const apiCityName = weatherData.city.name;
-      const existingCity = cities.find(
-        (c) =>
-          c.weatherData?.city?.name.toLowerCase() === apiCityName.toLowerCase()
-      );
+      const existingCity = cities.find((c) =>c.weatherData?.city?.name.toLowerCase() === apiCityName.toLowerCase());
 
       if (existingCity) {
         setError(`Місто ${apiCityName} вже існує в списку!`);

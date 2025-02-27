@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface WeatherData {
   city: {
@@ -35,49 +35,51 @@ interface MainCardsProps {
   loading: boolean;
 }
 
-export const MainCards: React.FC<MainCardsProps> = ({
-  cities,
-  onSubmit,
-  loading
-}) => {
-  const [cityInputs, setCityInputs] = useState<string[]>(Array(8).fill(''));
+export function MainCards({ cities, onSubmit, loading }: MainCardsProps) {
+  const [cityInputs, setCityInputs] = useState<string[]>(Array(8).fill(""));
+  console.log(cityInputs);
 
   const handleSubmit = (e: React.FormEvent, index: number) => {
     e.preventDefault();
     if (cityInputs[index].trim()) {
       onSubmit(cityInputs[index], index);
-      setCityInputs(prev => {
+      setCityInputs((prev) => {
         const newInputs = [...prev];
-        newInputs[index] = '';
+        newInputs[index] = "";
         return newInputs;
       });
     }
   };
 
   const handleInputChange = (value: string, index: number) => {
-    setCityInputs(prev => {
+    setCityInputs((prev) => {
       const newInputs = [...prev];
       newInputs[index] = value;
       return newInputs;
     });
   };
-
+  
+  const cityMap = new Map(cities.map((city) => [city.index, city]));
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {Array.from({ length: 8 }).map((_, index) => {
-        const city = cities.find(c => c.index === index);
-        
+        const city = cityMap.get(index);
         return (
           <div key={index} className="p-4 bg-white rounded-lg shadow-md">
             {city && city.weatherData ? (
               <div className="space-y-2">
-                <h2 className="text-xl font-semibold">{city.weatherData.city.name}</h2>
+                <h2 className="text-xl font-semibold">
+                  {city.weatherData.city.name}
+                </h2>
                 <p>Temperature: {city.weatherData.list[0].main.temp}°C</p>
                 <p>Weather: {city.weatherData.list[0].weather[0].main}</p>
                 <p>Wind: {city.weatherData.list[0].wind.speed} m/s</p>
               </div>
             ) : (
-              <form onSubmit={(e) => handleSubmit(e, index)} className="space-y-3">
+              <form
+                onSubmit={(e) => handleSubmit(e, index)}
+                className="space-y-3"
+              >
                 <input
                   type="text"
                   value={cityInputs[index]}
@@ -99,4 +101,4 @@ export const MainCards: React.FC<MainCardsProps> = ({
       })}
     </div>
   );
-};
+}
