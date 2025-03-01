@@ -16,6 +16,6 @@ header {
   }
   .navbar-nav {
     @include mH.flex-align-center;
-    gap: 16px;
+    gap: 1em;
   }
 }

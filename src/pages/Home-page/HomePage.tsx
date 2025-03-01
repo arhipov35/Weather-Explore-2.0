@@ -14,10 +14,10 @@ import { FirstCard } from "../../components/FirstCard/FirstCard";
 import { MainCards } from "../../components/MainCards";
 import configuration from "../../configuration";
 import { WeatherData } from "../../services/openWeather";
+import "./HomePage.scss";
 
 interface City {
   id: string;
-  
   createdAt: string;
   weatherData?: WeatherData;
   index: number;
@@ -150,14 +150,10 @@ export function HomePage() {
   };
 
   return (
-    <section className="container-fluid home-page">
+    <section className="container-fluid page">
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      <div
-        className={
-          isInitialView ? "flex justify-center items-center min-h-[60vh]" : ""
-        }
-      >
+      
         {isInitialLoading ? (
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
@@ -177,7 +173,7 @@ export function HomePage() {
             loading={loading}
           />
         )}
-      </div>
+      
     </section>
   );
 }

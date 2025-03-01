@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { WeatherData } from "../services/openWeather";
+import { CustomInput } from "./shared/CustomInput/CustomInput";
+
 interface City {
   id: string;
   index: number;
@@ -57,8 +59,7 @@ export function MainCards({ cities, onSubmit, loading }: MainCardsProps) {
                 onSubmit={(e) => handleSubmit(e, index)}
                 className="space-y-3"
               >
-                <input
-                  type="text"
+                <CustomInput
                   value={cityInputs[index]}
                   onChange={(e) => handleInputChange(e.target.value, index)}
                   placeholder="Enter city name"

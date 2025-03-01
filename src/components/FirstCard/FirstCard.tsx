@@ -1,5 +1,7 @@
 import React from "react";
 import "./FirstCard.scss";
+import { CustomInput } from "../shared/CustomInput/CustomInput";
+
 interface FirstCardProps {
   onSubmit: (e: React.FormEvent) => void;
   cityInput: string;
@@ -15,22 +17,18 @@ export function FirstCard({
 }: FirstCardProps) {
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={cityInput}
-          onChange={onCityInputChange}
-          placeholder="Enter city name"
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-blue-300"
-        >
-          {loading ? "Adding..." : "Add City"}
-        </button>
-      </form>
+      <div className="first-card-area page">
+        <div className="first-card">
+          <div className="first-card-field">
+            <p className="label">Add a city</p>
+            <CustomInput
+              value={cityInput}
+              onChange={onCityInputChange}
+              placeholder="Enter city name"
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

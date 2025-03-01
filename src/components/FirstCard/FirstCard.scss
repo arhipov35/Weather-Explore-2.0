@@ -1,2 +1,49 @@
 @use "../../assets/styles/variables" as vF;
 @use "../../assets/styles/mixins" as mF;
+
+.first-card-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex: 1 0 0;
+  align-self: stretch;
+
+  .first-card {
+    display: flex;
+    width: 20.75rem;
+    height: 28.25rem;
+    padding: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+
+    border-radius: 1rem;
+    border: 4px solid var(--Black-4, rgba(0, 0, 0, 0.04));
+    background: linear-gradient(152deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.10) 100%);
+
+    .first-card-field {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      align-self: stretch;
+
+      .label {
+        color: var(--Black-44, rgba(0, 0, 0, 0.44));
+        /* Lable */
+        font-family: Lato;
+        font-size: 0.75rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1rem;
+        /* 133.333% */
+        letter-spacing: 0.0075rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+}

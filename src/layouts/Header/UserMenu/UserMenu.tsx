@@ -34,7 +34,7 @@ function UserMenu({ user, onLogout, onOpenProfile }: UserMenuProps) {
           <Avatar 
             alt={user.displayName || 'User'} 
             src={user.photoURL || undefined}
-            sx={{ width: 48, height: 48 }}
+            sx={{ width: '3rem', height: '3rem' }}
           />
         </IconButton>
       </Tooltip>
