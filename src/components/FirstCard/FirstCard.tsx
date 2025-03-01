@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./FirstCard.scss";
 interface FirstCardProps {
   onSubmit: (e: React.FormEvent) => void;
   cityInput: string;
@@ -14,8 +14,8 @@ export function FirstCard({
   loading,
 }: FirstCardProps) {
   return (
-    <div className="w-96 p-6 bg-white rounded-lg shadow-lg">
-      <form onSubmit={onSubmit} className="space-y-4">
+    <>
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           value={cityInput}
@@ -31,6 +31,6 @@ export function FirstCard({
           {loading ? "Adding..." : "Add City"}
         </button>
       </form>
-    </div>
+    </>
   );
 }

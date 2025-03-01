@@ -6,7 +6,7 @@ import { AuthSection } from "./AuthSection/AuthSection";
 function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="navbar-section">
             <Link className="navbar-brand" to="/">

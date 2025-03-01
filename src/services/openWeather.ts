@@ -25,8 +25,7 @@ interface City {
   id: number;
   name: string;
 }
-
-interface WeatherData {
+export interface WeatherData {
   list: List[];
   city: City;
 }

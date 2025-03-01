@@ -28,13 +28,13 @@ function UserMenu({ user, onLogout, onOpenProfile }: UserMenuProps) {
   };
 
   return (
-    <Box sx={{ flexGrow: 0, ml: 2 }}>
+    <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar 
             alt={user.displayName || 'User'} 
             src={user.photoURL || undefined}
-            sx={{ width: 40, height: 40 }}
+            sx={{ width: 48, height: 48 }}
           />
         </IconButton>
       </Tooltip>

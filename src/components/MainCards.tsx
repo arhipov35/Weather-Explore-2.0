@@ -1,32 +1,9 @@
 import React, { useState } from "react";
-
-interface WeatherData {
-  city: {
-    name: string;
-  };
-  list: Array<{
-    main: {
-      temp: number;
-    };
-    weather: Array<{
-      main: string;
-    }>;
-    wind: {
-      speed: number;
-    };
-  }>;
-}
-
+import { WeatherData } from "../services/openWeather";
 interface City {
   id: string;
-  name: string;
   index: number;
-  weatherData?: {
-    city: {
-      name: string;
-    };
-    list: Array<any>;
-  };
+  weatherData?: WeatherData;
 }
 
 interface MainCardsProps {
@@ -58,7 +35,7 @@ export function MainCards({ cities, onSubmit, loading }: MainCardsProps) {
       return newInputs;
     });
   };
-  
+
   const cityMap = new Map(cities.map((city) => [city.index, city]));
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

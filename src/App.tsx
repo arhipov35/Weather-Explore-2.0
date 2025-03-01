@@ -2,7 +2,7 @@ import "./App.css";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout";
-import { HomePage } from "./pages/HomePage";
+import { HomePage } from "./pages/Home-page/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
