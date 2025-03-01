@@ -63,7 +63,6 @@ export function MainCards({ cities, onSubmit, loading }: MainCardsProps) {
                   value={cityInputs[index]}
                   onChange={(e) => handleInputChange(e.target.value, index)}
                   placeholder="Enter city name"
-                  className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
                   type="submit"

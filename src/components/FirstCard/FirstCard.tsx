@@ -19,14 +19,12 @@ export function FirstCard({
     <>
       <div className="first-card-area page">
         <div className="first-card">
-          <div className="first-card-field">
-            <p className="label">Add a city</p>
-            <CustomInput
-              value={cityInput}
-              onChange={onCityInputChange}
-              placeholder="Enter city name"
-            />
-          </div>
+          <CustomInput
+            value={cityInput}
+            onChange={onCityInputChange}
+            placeholder="Kyiv"
+            onSubmit={onSubmit}
+          />
         </div>
       </div>
     </>
