@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import {
   collection,
   addDoc,
@@ -9,16 +9,17 @@ import {
   updateDoc,
   getDocs,
 } from "firebase/firestore";
-import { db } from "../contexts/AuthContext";
-import { FirstCard } from "../components/FirstCard";
-import { MainCards } from "../components/MainCards";
-import configuration from "../configuration";
+import { db } from "../../contexts/AuthContext";
+import { FirstCard } from "../../components/FirstCard/FirstCard";
+import { MainCards } from "../../components/MainCards";
+import configuration from "../../configuration";
+import { WeatherData } from "../../services/openWeather";
+import "./HomePage.scss";
 
 interface City {
   id: string;
-  name: string;
   createdAt: string;
-  weatherData?: any;
+  weatherData?: WeatherData;
   index: number;
 }
 
@@ -56,7 +57,7 @@ export function HomePage() {
                 `https://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${configuration.apiToken}&units=metric`
               );
               if (weatherResponse.ok) {
-                const weatherData = await weatherResponse.json();
+                const weatherData: WeatherData = await weatherResponse.json();
                 await updateDoc(doc.ref, { weatherData });
               }
             } catch (error) {
@@ -75,7 +76,6 @@ export function HomePage() {
             const data = doc.data();
             citiesList.push({
               id: doc.id,
-              name: data.name,
               createdAt: data.createdAt,
               weatherData: data.weatherData,
               index: data.index,
@@ -108,10 +108,10 @@ export function HomePage() {
       const weatherResponse = await fetch(
         `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${configuration.apiToken}&units=metric`
       );
-      const weatherData = await weatherResponse.json();
+      const weatherData: WeatherData = await weatherResponse.json();
 
       if (weatherResponse.status !== 200) {
-        throw new Error(weatherData.message || "Failed to fetch weather data");
+        throw new Error("Failed to fetch weather data");
       }
 
       const apiCityName = weatherData.city.name;
@@ -150,14 +150,10 @@ export function HomePage() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <section className="container-fluid page">
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      <div
-        className={
-          isInitialView ? "flex justify-center items-center min-h-[60vh]" : ""
-        }
-      >
+      
         {isInitialLoading ? (
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
@@ -177,7 +173,7 @@ export function HomePage() {
             loading={loading}
           />
         )}
-      </div>
-    </div>
+      
+    </section>
   );
 }

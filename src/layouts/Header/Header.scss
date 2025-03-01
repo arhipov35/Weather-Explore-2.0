@@ -14,4 +14,8 @@ header {
       letter-spacing: 0.01875rem;
     }
   }
+  .navbar-nav {
+    @include mH.flex-align-center;
+    gap: 1em;
+  }
 }

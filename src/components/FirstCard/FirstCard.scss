@@ -1,0 +1,19 @@
+@use "../../assets/styles/variables" as vF;
+@use "../../assets/styles/mixins" as mF;
+
+.first-card-area {
+  @include mF.flex-column-center-center-stretch;
+  gap: 1rem;
+  flex: 1 0 0;
+
+  .first-card {
+    @include mF.flex-column-center;
+    width: 20.75rem;
+    height: 28.25rem;
+    padding: 1.5rem;
+    gap: 0.25rem;
+    border-radius: 1rem;
+    border: 4px solid vF.$border-color;
+    background: vF.$background-gradient;
+  }
+}

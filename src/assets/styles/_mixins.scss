@@ -47,3 +47,16 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+@mixin flex-column-stretch-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+@mixin flex-column-center-center-stretch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}

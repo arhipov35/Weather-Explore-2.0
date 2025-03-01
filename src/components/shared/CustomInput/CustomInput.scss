@@ -1,0 +1,40 @@
+@use "../../../assets/styles/variables" as vCI;
+@use "../../../assets/styles/mixins" as mCI;
+.card-field {
+  @include mCI.flex-column-stretch-start;
+  gap: 0.25rem;
+
+  .label {
+    color: vCI.$primary-color;
+    /* Lable */
+    font-family: vCI.$font-family;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1rem;
+    /* 133.333% */
+    letter-spacing: 0.0075rem;
+    margin-bottom: 0;
+  }
+  .caption {
+    color: vCI.$primary-color;
+
+    /* Caption 1 */
+    font-family: vCI.$font-family;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1rem; /* 123.077% */
+    letter-spacing: 0.00813rem;
+    margin-bottom: 0;
+  }
+}
+
+.custom-input {
+  padding: 0.75rem;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  border: 1px solid vCI.$third-color;
+  background: var(--White-30, rgba(255, 255, 255, 0.3));
+}
