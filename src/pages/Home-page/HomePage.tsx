@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../contexts/AuthContext";
 import { FirstCard } from "../../components/FirstCard/FirstCard";
-import { MainCards } from "../../components/MainCards";
+import { MainCards } from "../../components/MainCards/MainCards";
 import configuration from "../../configuration";
 import { WeatherData } from "../../services/openWeather";
 import "./HomePage.scss";

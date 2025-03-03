@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { WeatherData } from "../services/openWeather";
-import { CustomInput } from "./shared/CustomInput/CustomInput";
-
+import { WeatherData } from "../../services/openWeather";
+import { CustomInput } from "../shared/CustomInput/CustomInput";
+import "./MainCards.scss";
 interface City {
   id: string;
   index: number;

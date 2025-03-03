@@ -86,28 +86,32 @@ export function ProfilePage() {
                 boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               }}
             />
-            <input
-              accept="image/*"
-              type="file"
-              id="photo-upload"
-              onChange={handlePhotoUpload}
-              style={{ display: 'none' }}
-            />
-            <label htmlFor="photo-upload">
-              <IconButton
-                component="span"
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  backgroundColor: 'primary.main',
-                  color: 'white',
-                  '&:hover': { backgroundColor: 'primary.dark' },
-                }}
-              >
-                <PhotoCamera />
-              </IconButton>
-            </label>
+            {isEditing && (
+              <>
+                <input
+                  accept="image/*"
+                  type="file"
+                  id="photo-upload"
+                  onChange={handlePhotoUpload}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="photo-upload">
+                  <IconButton
+                    component="span"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      backgroundColor: 'primary.main',
+                      color: 'white',
+                      '&:hover': { backgroundColor: 'primary.dark' },
+                    }}
+                  >
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+              </>
+            )}
           </Box>
 
           {isEditing ? (

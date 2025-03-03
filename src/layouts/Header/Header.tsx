@@ -22,7 +22,11 @@ function Header() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <div className="burger-icon">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </button>
           <div
             className="collapse navbar-collapse justify-content-end"
