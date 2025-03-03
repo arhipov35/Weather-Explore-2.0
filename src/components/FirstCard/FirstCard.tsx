@@ -13,18 +13,18 @@ export function FirstCard({
   onSubmit,
   cityInput,
   onCityInputChange,
-  loading,
 }: FirstCardProps) {
   return (
     <>
       <div className="first-card-area page">
         <div className="first-card">
-          <CustomInput
-            value={cityInput}
-            onChange={onCityInputChange}
-            placeholder="Kyiv"
-            onSubmit={onSubmit}
-          />
+          <form onSubmit={onSubmit}>
+            <CustomInput
+              value={cityInput}
+              onChange={onCityInputChange}
+              placeholder="Kyiv"
+            />
+          </form>
         </div>
       </div>
     </>
