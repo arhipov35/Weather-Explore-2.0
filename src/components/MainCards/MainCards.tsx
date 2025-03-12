@@ -14,7 +14,7 @@ interface MainCardsProps {
   loading: boolean;
 }
 
-export function MainCards({ cities, onSubmit, loading }: MainCardsProps) {
+export function MainCards({ cities, onSubmit }: MainCardsProps) {
   const [cityInputs, setCityInputs] = useState<string[]>(Array(8).fill(""));
   console.log(cityInputs);
 
@@ -40,42 +40,48 @@ export function MainCards({ cities, onSubmit, loading }: MainCardsProps) {
 
   const cityMap = new Map(cities.map((city) => [city.index, city]));
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <section className="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 g-4">
       {Array.from({ length: 8 }).map((_, index) => {
         const city = cityMap.get(index);
         return (
-          <div key={index} className="p-4 bg-white rounded-lg shadow-md">
+          <div key={index}>
             {city && city.weatherData ? (
-              <div className="space-y-2">
-                <h2 className="text-xl font-semibold">
-                  {city.weatherData.city.name}
-                </h2>
-                <p>Temperature: {city.weatherData.list[0].main.temp}°C</p>
-                <p>Weather: {city.weatherData.list[0].weather[0].main}</p>
-                <p>Wind: {city.weatherData.list[0].wind.speed} m/s</p>
+              <div className="main-card">
+                <div className="main-card-data">
+                  <h5 className="main-card-city-name">
+                    {city.weatherData.city.name}
+                  </h5>
+                  <div className="main-card-indicators">
+                    <h1 className="main-card-indicators-temp">
+                      {Math.round(city.weatherData.list[0].main.temp)}°
+                    </h1>
+                    <div className="main-card-indicators-state">
+                      <p className="main-card-caption">
+                        {city.weatherData.list[0].weather[0].main}
+                      </p>
+                      <div className="main-card-indicators-state-feels">
+                        <p className="main-card-caption">Feeling like </p>
+                        <p className="main-card-feels">
+                          {Math.round(city.weatherData.list[0].main.feels_like)}
+                          °
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => handleSubmit(e, index)}
-                className="space-y-3"
-              >
+              <form onSubmit={(e) => handleSubmit(e, index)}>
                 <CustomInput
                   value={cityInputs[index]}
                   onChange={(e) => handleInputChange(e.target.value, index)}
                   placeholder="Enter city name"
                 />
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-blue-300"
-                >
-                  {loading ? "Adding..." : "Add City"}
-                </button>
               </form>
             )}
           </div>
         );
       })}
-    </div>
+    </section>
   );
 }
