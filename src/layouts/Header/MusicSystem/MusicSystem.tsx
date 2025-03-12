@@ -6,22 +6,20 @@ import { useCallback, useEffect, useState } from "react";
 import { playlist } from "./playlist";
 
 function MusicSystem() {
-  const [currentSong, setCurrentSong] = useState<string>("");
+  const [currentSong, setCurrentSong] = useState<typeof playlist[0] | null>(null);
   const [playedSongs, setPlayedSongs] = useState<Set<string>>(new Set());
-  const { isPlaying, volume, onVolumeChange, togglePlayback } =
-    useAudioPlayer();
+  const { isPlaying, volume, onVolumeChange, togglePlayback } = useAudioPlayer();
 
   const selectRandomSong = useCallback(() => {
     if (playedSongs.size >= playlist.length - 1) {
-      setPlayedSongs(new Set([currentSong]));
+      setPlayedSongs(new Set([currentSong?.URL || ""]));
     }
 
-    const availableSongs = playlist.filter((song) => !playedSongs.has(song));
-
+    const availableSongs = playlist.filter((song) => !playedSongs.has(song.URL));
     const randomIndex = Math.floor(Math.random() * availableSongs.length);
     const selectedSong = availableSongs[randomIndex];
 
-    setPlayedSongs((prev) => new Set([...prev, selectedSong]));
+    setPlayedSongs((prev) => new Set([...prev, selectedSong.URL]));
 
     return selectedSong;
   }, [playedSongs, currentSong]);
@@ -29,17 +27,16 @@ function MusicSystem() {
   useEffect(() => {
     const firstSong = playlist[Math.floor(Math.random() * playlist.length)];
     setCurrentSong(firstSong);
-    setPlayedSongs(new Set([firstSong]));
+    setPlayedSongs(new Set([firstSong.URL]));
   }, []);
 
   const handleSongEnd = useCallback(() => {
     setCurrentSong(selectRandomSong());
   }, [selectRandomSong]);
-
   return (
     <>
       <ReactPlayer
-        url={currentSong}
+        url={currentSong?.URL}
         playing={isPlaying}
         controls={false}
         width="0"
