@@ -15,6 +15,7 @@ import { MainCards } from "../../components/MainCards/MainCards";
 import configuration from "../../configuration";
 import { WeatherData } from "../../services/openWeather";
 import "./HomePage.scss";
+import { useRefetch } from "../../contexts/RefetchContext";
 
 interface City {
   id: string;
@@ -25,6 +26,7 @@ interface City {
 
 export function HomePage() {
   const { user } = useAuth();
+  const { isToggled } = useRefetch();
   const [cityInput, setCityInput] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -94,7 +96,7 @@ export function HomePage() {
     };
 
     fetchCities();
-  }, [user]);
+  }, [user, isToggled]);
 
   const handleSubmit = async (cityName: string, index: number) => {
     if (!user) {

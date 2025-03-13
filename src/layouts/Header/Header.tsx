@@ -2,14 +2,16 @@ import "./Header.scss";
 import { Link } from "react-router-dom";
 import MusicSystem from "./MusicSystem/MusicSystem";
 import { AuthSection } from "./AuthSection/AuthSection";
+import { useRefetch } from "../../contexts/RefetchContext";
 
 function Header() {
+  const { toggle } = useRefetch();
   return (
     <header>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="navbar-section">
-            <Link className="navbar-brand" to="/">
+            <Link onClick={toggle} className="navbar-brand" to="/">
               Weather Explore 2.0
             </Link>
           </div>
