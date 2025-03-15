@@ -6,13 +6,13 @@ import { HomePage } from "./pages/Home-page/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { HeaderProvider } from "./contexts/RefetchContext";
+import { RefetchProvider } from "./contexts/RefetchContext";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <HeaderProvider>
+        <RefetchProvider>
           <Routes>
             {/* Public route without layout */}
             <Route path="/login" element={<LoginPage />} />
@@ -40,7 +40,7 @@ function App() {
             {/* Catch all route */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </HeaderProvider>
+        </RefetchProvider>
       </AuthProvider>
     </BrowserRouter>
   );

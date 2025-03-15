@@ -10,7 +10,7 @@ interface HeaderContextType {
 export const RefetchContext = createContext<HeaderContextType | undefined>(undefined);
 
 
-export const HeaderProvider = ({ children }: { children: ReactNode }) => {
+export const RefetchProvider = ({ children }: { children: ReactNode }) => {
   const [isToggled, setIsToggled] = useState<boolean>(true);
 
   function toggle() {

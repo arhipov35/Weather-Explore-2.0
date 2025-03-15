@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { WeatherData } from "../../services/openWeather";
 import { CustomInput } from "../shared/CustomInput/CustomInput";
+import { WeatherCard } from "./WeatherCard/WeatherCard";
+import { CardHover } from "./CardHover/CardHover";
 import "./MainCards.scss";
+
 interface City {
   id: string;
   index: number;
@@ -16,7 +19,7 @@ interface MainCardsProps {
 
 export function MainCards({ cities, onSubmit }: MainCardsProps) {
   const [cityInputs, setCityInputs] = useState<string[]>(Array(8).fill(""));
-  console.log(cityInputs);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent, index: number) => {
     e.preventDefault();
@@ -46,31 +49,8 @@ export function MainCards({ cities, onSubmit }: MainCardsProps) {
         return (
           <div key={index}>
             {city && city.weatherData ? (
-              <div className="main-card">
-                <div className="main-card-data">
-                  <h5 className="main-card-city-name">
-                    {city.weatherData.city.name}
-                  </h5>
-                  <div className="main-card-indicators">
-                    <h1 className="main-card-indicators-temp">
-                      {Math.round(city.weatherData.list[0].main.temp)}°
-                    </h1>
-                    <div className="main-card-indicators-state">
-                      <p className="main-card-caption">
-                        {city.weatherData.list[0].weather[0].main}
-                      </p>
-                      <div className="main-card-indicators-state-feels">
-                        <p className="main-card-caption">Feeling like </p>
-                        <p className="main-card-feels">
-                          {Math.round(city.weatherData.list[0].main.feels_like)}
-                          °
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
+              <WeatherCard weatherData={city.weatherData} />
+            ) : hoverIndex === index ? (
               <form onSubmit={(e) => handleSubmit(e, index)}>
                 <CustomInput
                   value={cityInputs[index]}
@@ -78,6 +58,8 @@ export function MainCards({ cities, onSubmit }: MainCardsProps) {
                   placeholder="Enter city name"
                 />
               </form>
+            ) : (
+              <CardHover onClick={() => setHoverIndex(index)} />
             )}
           </div>
         );
