@@ -8,7 +8,7 @@ $border-color: var(--Black-4, rgba(0, 0, 0, 0.04));
 $font-family: "Lato", serif;
 // Style Card
 $border-radius: 1rem;
-$border: 1px solid rgba(0, 0, 0, 0.1);
+$border: 2px solid rgba(0, 0, 0, 0.1);
 $background-gradient: linear-gradient(
   152deg,
   rgba(255, 255, 255, 0.1) 0%,
@@ -16,3 +16,5 @@ $background-gradient: linear-gradient(
 );
 $box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.04);
 $backdrop-filter: blur(2px);
+$height: 28rem;
+$size-icon: 1.5rem;

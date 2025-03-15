@@ -1,8 +1,10 @@
 @use "../../assets/styles/variables" as vH;
 @use "../../assets/styles/mixins" as mH;
+
 header {
   .navbar-section {
     @include mH.flex-align-center;
+
     .navbar-brand {
       color: vH.$third-color;
       text-align: center;
@@ -10,12 +12,80 @@ header {
       font-size: 1.25rem;
       font-style: normal;
       font-weight: 700;
-      line-height: 1.25; /* 100% */
+      line-height: 1.25;
+      /* 100% */
       letter-spacing: 0.01875rem;
     }
   }
+
   .navbar-nav {
     @include mH.flex-align-center;
     gap: 1em;
   }
+
+  .navbar-toggler {
+    border: none;
+    padding: 0;
+    width: 2.5rem; // 40px / 16
+    height: 2.5rem; // 40px / 16
+    position: relative;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    .burger-icon {
+      width: 1.875rem; // 30px / 16
+      height: 1.5625rem; // 25px / 16
+      position: relative;
+      margin: 0 auto;
+
+      span {
+        display: block;
+        position: absolute;
+        height: 0.1875rem; // 3px / 16
+        width: 100%;
+        background: vH.$third-color;
+        border-radius: 0.1875rem; // 3px / 16
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: 0.25s ease-in-out;
+
+        &:nth-child(1) {
+          top: 0;
+        }
+
+        &:nth-child(2) {
+          top: 0.625rem; // 10px / 16
+        }
+
+        &:nth-child(3) {
+          top: 1.25rem; // 20px / 16
+        }
+      }
+    }
+
+    &[aria-expanded="true"] {
+      .burger-icon {
+        span {
+          &:nth-child(1) {
+            top: 0.625rem; // 10px / 16
+            transform: rotate(135deg);
+          }
+
+          &:nth-child(2) {
+            opacity: 0;
+            left: -3.75rem; // 60px / 16
+          }
+
+          &:nth-child(3) {
+            top: 0.625rem; // 10px / 16
+            transform: rotate(-135deg);
+          }
+        }
+      }
+    }
+  }
+
 }

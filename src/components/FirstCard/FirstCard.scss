@@ -15,5 +15,9 @@
     border-radius: 1rem;
     border: 4px solid vF.$border-color;
     background: vF.$background-gradient;
+
+    form {
+      display: contents;
+    }
   }
 }

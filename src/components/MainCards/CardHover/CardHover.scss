@@ -1,0 +1,41 @@
+@use "../../../assets/styles/variables" as vCH;
+@use "../../../assets/styles/mixins" as mCH;
+
+.card-hover {
+  position: relative;
+  @include mCH.flex-column-center;
+  padding: 1.5rem;
+  min-height: vCH.$height;
+  max-height: vCH.$height;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  border-radius: vCH.$border-radius;
+  border: vCH.$border;
+  background: vCH.$background-gradient;
+  cursor: pointer;
+  .card-hover-content {
+    @include mCH.flex-center;
+    gap: 0.25rem;
+    opacity: 0;
+    transform: translateY(50%);
+    transition: opacity 0.4s linear, transform 0.3s linear;
+    .card-hover-caption {
+      color: vCH.$text-color;
+
+      /* Button 1 */
+      font-family: vCH.$font-family;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5rem; /* 160% */
+    }
+    .card-hover-icon {
+      width: vCH.$size-icon;
+      height: vCH.$size-icon;
+    }
+  }
+  &:hover .card-hover-content {
+    transform: translateY(10%);
+    opacity: 1;
+  }
+}

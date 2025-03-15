@@ -1,0 +1,169 @@
+@use "../../../assets/styles/variables" as vWC;
+@use "../../../assets/styles/mixins" as mWC;
+
+.main-card {
+  @include mWC.flex-column-stretch;
+  padding: 1.5rem;
+  max-height: vWC.$height;
+  gap: 1rem;
+  flex: 1 0 0;
+  border-radius: vWC.$border-radius;
+  border: vWC.$border;
+  background: vWC.$background-gradient;
+  box-shadow: vWC.$box-shadow;
+  backdrop-filter: vWC.$backdrop-filter;
+
+  /* no copy text*/
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  .main-card-data {
+    @include mWC.flex-column-stretch-start;
+    gap: 0.75rem;
+    .main-card-city-name {
+      align-self: stretch;
+      color: vWC.$text-color;
+
+      /* H5 */
+      font-family: vWC.$font-family;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1rem;
+      /* 114.286% */
+      letter-spacing: 0.00875rem;
+    }
+
+    .main-card-indicators {
+      @include mWC.flex-start-stretch;
+      gap: 0.25rem;
+
+      .main-card-indicators-temp {
+        /* H1 */
+        font-family: vWC.$font-family;
+        font-size: 3.75rem;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 3rem;
+        /* 80% */
+        letter-spacing: 0.0375rem;
+        background: linear-gradient(180deg, #000 0%, #000 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .main-card-indicators-state {
+        @include mWC.flex-column-between-start-stretch;
+
+        .main-card-caption {
+          color: var(--Black-100, #000);
+
+          /* Caption 1 */
+          font-family: vWC.$font-family;
+          font-size: 0.8125rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1rem;
+          /* 123.077% */
+          letter-spacing: 0.00813rem;
+        }
+
+        .main-card-indicators-state-feels {
+          display: flex;
+          align-items: baseline;
+          gap: 0.25rem;
+
+          .main-card-caption {
+            color: vWC.$primary-color;
+
+            /* Caption 1 */
+            font-family: vWC.$font-family;
+            font-size: 0.8125rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1rem;
+            /* 123.077% */
+            letter-spacing: 0.00813rem;
+          }
+
+          .main-card-feels {
+            color: vWC.$primary-color;
+
+            /* H4 */
+            font-family: vWC.$font-family;
+            font-size: 1.25rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.25rem;
+            /* 100% */
+            letter-spacing: 0.01875rem;
+          }
+        }
+      }
+    }
+  }
+
+  .main-card-photo {
+    @include mWC.flex-column-center-center-stretch;
+    gap: 0.25rem;
+    flex: 1 0 0;
+
+    .main-card-photo-icon {
+      width: 17.75rem;
+      height: 14.5rem;
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .main-card-hum-wind {
+    @include mWC.flex-between-start-stretch;
+
+    .container-hum-wind {
+      @include mWC.flex-column-center-start;
+      gap: 0.5rem;
+
+      .hum-wind {
+        @include mWC.flex-align-center;
+        padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+        gap: 0.25rem;
+        border-radius: 1rem;
+        background: vWC.$background;
+        .icon-hum-wind {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+        .caption-hum-wind {
+          color: vWC.$primary-color;
+
+          /* Caption 1 */
+          font-family: vWC.$font-family;
+          font-size: 0.8125rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1rem; /* 123.077% */
+          letter-spacing: 0.00813rem;
+        }
+      }
+      .interest-hum-wind-container {
+        @include mWC.flex-end-center-stretch;
+        gap: 0.25rem;
+      }
+      .interest-hum-wind {
+        color: vWC.$primary-color;
+
+        /* H4 */
+        font-family: vWC.$font-family;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.25rem; /* 100% */
+        letter-spacing: 0.01875rem;
+      }
+    }
+  }
+}

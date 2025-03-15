@@ -11,10 +11,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../../contexts/AuthContext";
 import { FirstCard } from "../../components/FirstCard/FirstCard";
-import { MainCards } from "../../components/MainCards";
+import { MainCards } from "../../components/MainCards/MainCards";
 import configuration from "../../configuration";
 import { WeatherData } from "../../services/openWeather";
 import "./HomePage.scss";
+import { useRefetch } from "../../contexts/RefetchContext";
 
 interface City {
   id: string;
@@ -25,6 +26,7 @@ interface City {
 
 export function HomePage() {
   const { user } = useAuth();
+  const { isToggled } = useRefetch();
   const [cityInput, setCityInput] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -94,7 +96,7 @@ export function HomePage() {
     };
 
     fetchCities();
-  }, [user]);
+  }, [user, isToggled]);
 
   const handleSubmit = async (cityName: string, index: number) => {
     if (!user) {
@@ -153,27 +155,21 @@ export function HomePage() {
     <section className="container-fluid page">
       {error && <div className="text-red-500 mb-4">{error}</div>}
 
-      
-        {isInitialLoading ? (
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-            <p className="mt-4">Loading your weather cards...</p>
-          </div>
-        ) : isInitialView ? (
-          <FirstCard
-            onSubmit={handleFirstCardSubmit}
-            cityInput={cityInput}
-            onCityInputChange={handleCityInputChange}
-            loading={loading}
-          />
-        ) : (
-          <MainCards
-            cities={cities}
-            onSubmit={handleSubmit}
-            loading={loading}
-          />
-        )}
-      
+      {isInitialLoading ? (
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4">Loading your weather cards...</p>
+        </div>
+      ) : isInitialView ? (
+        <FirstCard
+          onSubmit={handleFirstCardSubmit}
+          cityInput={cityInput}
+          onCityInputChange={handleCityInputChange}
+          loading={loading}
+        />
+      ) : (
+        <MainCards cities={cities} onSubmit={handleSubmit} loading={loading} />
+      )}
     </section>
   );
 }
