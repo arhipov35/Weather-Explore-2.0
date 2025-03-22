@@ -7,6 +7,8 @@ interface CustomInputProps {
   placeholder?: string;
   className?: string;
   type?: string;
+  error?: boolean;
+  errorMessage?: string;
 }
 
 export function CustomInput({
@@ -15,6 +17,8 @@ export function CustomInput({
   placeholder = "",
   className = "",
   type = "text",
+  error = false,
+  errorMessage = "No city found",
 }: CustomInputProps) {
   return (
     <div className="card-field">
@@ -24,9 +28,11 @@ export function CustomInput({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`custom-input ${className}`}
+        className={`custom-input ${className} ${error ? "error-border" : ""}`}
       />
-      <p className="caption">Choose your location</p>
+      <p className={`caption ${error ? "error" : ""}`}>
+        {error ? errorMessage : "Choose your location"}
+      </p>
     </div>
   );
 }

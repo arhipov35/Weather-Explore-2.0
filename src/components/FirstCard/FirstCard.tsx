@@ -7,12 +7,14 @@ interface FirstCardProps {
   cityInput: string;
   onCityInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   loading: boolean;
+  error: string;
 }
 
 export function FirstCard({
   onSubmit,
   cityInput,
   onCityInputChange,
+  error,
 }: FirstCardProps) {
   return (
     <>
@@ -23,6 +25,8 @@ export function FirstCard({
               value={cityInput}
               onChange={onCityInputChange}
               placeholder="Kyiv"
+              error={!!error}
+              errorMessage={error}
             />
           </form>
         </div>

@@ -38,6 +38,7 @@ export function HomePage() {
   const handleCityInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setCityInput(value);
+    setError("");
   };
 
   useEffect(() => {
@@ -84,7 +85,11 @@ export function HomePage() {
             });
           });
           setCities(citiesList);
-          setIsInitialView(citiesList.length === 0);
+          const isNewInitialView = citiesList.length === 0;
+          setIsInitialView(isNewInitialView);
+          if (isNewInitialView) {
+            setError(""); // Clear error when switching back to initial view
+          }
           setIsInitialLoading(false);
         });
 
@@ -123,7 +128,7 @@ export function HomePage() {
       );
 
       if (existingCity) {
-        setError(`Місто ${apiCityName} вже існує в списку!`);
+        setError(`City ${apiCityName} already added!`);
         return;
       }
       // Create new city
@@ -145,16 +150,8 @@ export function HomePage() {
     }
   };
 
-  const handleFirstCardSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleSubmit(cityInput, 0);
-    setCityInput("");
-  };
-
   return (
     <section className="container-fluid page">
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
       {isInitialLoading ? (
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
@@ -162,13 +159,17 @@ export function HomePage() {
         </div>
       ) : isInitialView ? (
         <FirstCard
-          onSubmit={handleFirstCardSubmit}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(cityInput, 0);
+          }}
           cityInput={cityInput}
           onCityInputChange={handleCityInputChange}
           loading={loading}
+          error={error}
         />
       ) : (
-        <MainCards cities={cities} onSubmit={handleSubmit} loading={loading} />
+        <MainCards cities={cities} onSubmit={handleSubmit} loading={loading} error={error} />
       )}
     </section>
   );
