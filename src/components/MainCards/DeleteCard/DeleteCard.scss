@@ -1,0 +1,69 @@
+@use "../../../assets/styles/variables" as vDC;
+@use "../../../assets/styles/mixins" as mDC;
+.delete-card {
+  @include mDC.flex-column-center-end;
+  min-height: vDC.$height;
+  max-height: vDC.$height;
+  padding: 1.5rem;
+  gap: 2rem;
+  border-radius: vDC.$border-radius;
+  border: vDC.$border;
+  background: vDC.$background-gradient;
+  box-shadow: vDC.$box-shadow;
+  backdrop-filter: vDC.$backdrop-filter;
+  .delete-card-text {
+    align-self: stretch;
+    color: #000;
+    text-align: center;
+
+    /* H3 */
+    font-family: vDC.$font-family;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2rem; /* 133.333% */
+  }
+  .delete-card-buttons {
+    @include mDC.flex-start-stretch;
+    gap: 1rem;
+    .delete-card-button {
+      @include mDC.flex-center;
+      padding: 0.75rem;
+      gap: 0.25rem;
+      flex: 1 0 0;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .cancel {
+      color: vDC.$primary-color;
+      text-align: center;
+
+      /* Button 2 */
+      font-family: vDC.$font-family;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.5rem; /* 160% */
+      transition: background 0.4s;
+      &:hover {
+        background: vDC.$background;
+      }
+    }
+    .delete {
+      color: var(--White-White, #fff);
+      text-align: center;
+
+      /* Button 1 */
+      font-family: vDC.$font-family;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5rem; /* 160% */
+      background: var(--Black-44, rgba(0, 0, 0, 0.44));
+      transition: background 0.4s;
+      &:hover {
+        background: black;
+      }
+    }
+  }
+}

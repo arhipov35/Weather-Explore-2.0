@@ -2,6 +2,7 @@
 @use "../../../assets/styles/mixins" as mWC;
 
 .main-card {
+  position: relative;
   @include mWC.flex-column-stretch;
   padding: 1.5rem;
   max-height: vWC.$height;
@@ -12,7 +13,6 @@
   background: vWC.$background-gradient;
   box-shadow: vWC.$box-shadow;
   backdrop-filter: vWC.$backdrop-filter;
-
   /* no copy text*/
   user-select: none;
   -webkit-user-select: none;
@@ -22,6 +22,8 @@
   .main-card-data {
     @include mWC.flex-column-stretch-start;
     gap: 0.75rem;
+    transition: transform 0.5s ease;
+
     .main-card-city-name {
       align-self: stretch;
       color: vWC.$text-color;
@@ -110,6 +112,7 @@
     @include mWC.flex-column-center-center-stretch;
     gap: 0.25rem;
     flex: 1 0 0;
+    transition: transform 0.5s ease;
 
     .main-card-photo-icon {
       width: 17.75rem;
@@ -133,10 +136,12 @@
         gap: 0.25rem;
         border-radius: 1rem;
         background: vWC.$background;
+
         .icon-hum-wind {
           width: 1.5rem;
           height: 1.5rem;
         }
+
         .caption-hum-wind {
           color: vWC.$primary-color;
 
@@ -145,14 +150,17 @@
           font-size: 0.8125rem;
           font-style: normal;
           font-weight: 400;
-          line-height: 1rem; /* 123.077% */
+          line-height: 1rem;
+          /* 123.077% */
           letter-spacing: 0.00813rem;
         }
       }
+
       .interest-hum-wind-container {
         @include mWC.flex-end-center-stretch;
         gap: 0.25rem;
       }
+
       .interest-hum-wind {
         color: vWC.$primary-color;
 
@@ -161,8 +169,51 @@
         font-size: 1.25rem;
         font-style: normal;
         font-weight: 400;
-        line-height: 1.25rem; /* 100% */
+        line-height: 1.25rem;
+        /* 100% */
         letter-spacing: 0.01875rem;
+      }
+    }
+  }
+
+  &:hover .main-card-data {
+    transform: translateY(70%);
+  }
+
+  &:hover .main-card-photo {
+    transform: translateY(15%);
+  }
+
+  &:hover .card-navigation {
+    opacity: 1;
+  }
+
+  .card-navigation {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    .card-navigation-icon {
+      @include mWC.flex-center;
+      padding: 0.75rem;
+      gap: 0.25rem;
+      border-radius: 0.5rem;
+      transition: background 0.4s;
+      cursor: pointer;
+
+      &:hover {
+        background: vWC.$background;
+      }
+
+      img {
+        width: vWC.$size-icon;
+        height: vWC.$size-icon;
       }
     }
   }

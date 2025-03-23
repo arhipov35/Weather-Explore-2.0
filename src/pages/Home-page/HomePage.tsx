@@ -8,6 +8,8 @@ import {
   onSnapshot,
   updateDoc,
   getDocs,
+  doc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../../contexts/AuthContext";
 import { FirstCard } from "../../components/FirstCard/FirstCard";
@@ -150,6 +152,17 @@ export function HomePage() {
     }
   };
 
+  const handleDelete = async (cityId: string) => {
+    if (!user) return;
+    try {
+      const cityRef = doc(db, "cities", cityId);
+      await deleteDoc(cityRef);
+    } catch (error) {
+      console.error("Error deleting city:", error);
+      setError("Failed to delete the city");
+    }
+  };
+
   return (
     <section className="container-fluid page">
       {isInitialLoading ? (
@@ -169,7 +182,13 @@ export function HomePage() {
           error={error}
         />
       ) : (
-        <MainCards cities={cities} onSubmit={handleSubmit} loading={loading} error={error} />
+        <MainCards 
+          cities={cities} 
+          onSubmit={handleSubmit} 
+          loading={loading} 
+          error={error}
+          onDelete={handleDelete}
+        />
       )}
     </section>
   );

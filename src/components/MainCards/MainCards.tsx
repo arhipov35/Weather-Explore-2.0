@@ -14,11 +14,12 @@ interface City {
 interface MainCardsProps {
   cities: City[];
   onSubmit: (cityName: string, index: number) => void;
+  onDelete: (cityId: string) => void;
   loading: boolean;
   error: string;
 }
 
-export function MainCards({ cities, onSubmit, error }: MainCardsProps) {
+export function MainCards({ cities, onSubmit, onDelete, error }: MainCardsProps) {
   const [cityInputs, setCityInputs] = useState<string[]>(Array(8).fill(""));
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [activeErrorIndex, setActiveErrorIndex] = useState<number | null>(null);
@@ -55,7 +56,10 @@ export function MainCards({ cities, onSubmit, error }: MainCardsProps) {
         return (
           <div key={index}>
             {city && city.weatherData ? (
-              <WeatherCard weatherData={city.weatherData} />
+              <WeatherCard 
+                weatherData={city.weatherData} 
+                onDelete={() => onDelete(city.id)}
+              />
             ) : hoverIndex === index ? (
               <div className="add-card">
                 <div

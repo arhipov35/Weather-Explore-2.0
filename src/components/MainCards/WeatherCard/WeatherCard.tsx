@@ -1,14 +1,49 @@
+import { useState } from "react";
 import { WeatherData } from "../../../services/openWeather";
 import { WeatherIcon } from "../../shared/WeatherIcon/WeatherIcon";
+import { DeleteCard } from "../DeleteCard/DeleteCard";
 import "./WeatherCard.scss";
 
 interface WeatherCardProps {
   weatherData: WeatherData;
+  onDelete?: () => void;
 }
 
-export function WeatherCard({ weatherData }: WeatherCardProps) {
+export function WeatherCard({ weatherData, onDelete }: WeatherCardProps) {
+  const [showDeleteCard, setShowDeleteCard] = useState(false);
+
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete();
+    }
+    setShowDeleteCard(false);
+  };
+
+  if (showDeleteCard) {
+    return (
+      <DeleteCard
+        onCancel={() => setShowDeleteCard(false)}
+        onDelete={handleDelete}
+      />
+    );
+  }
+
   return (
     <div className="main-card">
+      <div className="card-navigation">
+        <div className="card-navigation-icon">
+          <img src="/src/assets/img/edit.svg" alt="edit" />
+        </div>
+        <div className="card-navigation-icon">
+          <img src="/src/assets/img/forecast.svg" alt="forecast" />
+        </div>
+        <div
+          className="card-navigation-icon"
+          onClick={() => setShowDeleteCard(true)}
+        >
+          <img src="/src/assets/img/delete.svg" alt="delete" />
+        </div>
+      </div>
       <div className="main-card-data">
         <h5 className="main-card-city-name">{weatherData.city.name}</h5>
         <div className="main-card-indicators">
