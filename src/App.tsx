@@ -7,39 +7,42 @@ import { LoginPage } from "./pages/LoginPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { RefetchProvider } from "./contexts/RefetchContext";
+import { WeatherProvider } from "./contexts/WeatherContext";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <RefetchProvider>
-          <Routes>
-            {/* Public route without layout */}
-            <Route path="/login" element={<LoginPage />} />
+          <WeatherProvider>
+            <Routes>
+              {/* Public route without layout */}
+              <Route path="/login" element={<LoginPage />} />
 
-            {/* Protected routes with layout */}
-            <Route element={<MainLayout />}>
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
-                    <HomePage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfilePage />
-                  </ProtectedRoute>
-                }
-              />
-            </Route>
+              {/* Protected routes with layout */}
+              <Route element={<MainLayout />}>
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <HomePage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <ProfilePage />
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
 
-            {/* Catch all route */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+              {/* Catch all route */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </WeatherProvider>
         </RefetchProvider>
       </AuthProvider>
     </BrowserRouter>

@@ -9,6 +9,7 @@ interface CustomInputProps {
   type?: string;
   error?: boolean;
   errorMessage?: string;
+  labelText?: string;
 }
 
 export function CustomInput({
@@ -19,10 +20,11 @@ export function CustomInput({
   type = "text",
   error = false,
   errorMessage = "No city found",
+  labelText = "Add a city"
 }: CustomInputProps) {
   return (
     <div className="card-field">
-      <p className="label">Add a city</p>
+      <p className="label">{labelText}</p>
       <input
         type={type}
         value={value}
