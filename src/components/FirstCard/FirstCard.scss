@@ -12,8 +12,8 @@
     height: 28.25rem;
     padding: 1.5rem;
     gap: 0.25rem;
-    border-radius: 1rem;
-    border: 4px solid vF.$border-color;
+    border-radius: vF.$border-radius;
+    border: vF.$border;
     background: vF.$background-gradient;
 
     form {

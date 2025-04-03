@@ -15,11 +15,20 @@ export function HomePage() {
   } = useWeather();
   const [cityInput, setCityInput] = useState<string>("");
 
-  // Handle input change
+ 
   const handleCityInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setCityInput(value);
     setError("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errorMessage = await addCity(cityInput, 0);
+    setCityInput("");
+    if (errorMessage) {
+      setError(errorMessage);
+    }
   };
 
   return (
@@ -31,10 +40,7 @@ export function HomePage() {
         </div>
       ) : isInitialView ? (
         <FirstCard
-          onSubmit={(e) => {
-            e.preventDefault();
-            addCity(cityInput, 0);
-          }}
+          onSubmit={handleSubmit}
           cityInput={cityInput}
           onCityInputChange={handleCityInputChange}
           loading={loading}

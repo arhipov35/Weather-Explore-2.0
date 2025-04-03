@@ -1,0 +1,158 @@
+@use "../../../assets/styles/variables" as vFC;
+@use "../../../assets/styles/mixins" as mFC;
+
+.forecast {
+  @include mFC.flex-column-end-end;
+  min-height: vFC.$height;
+  max-height: vFC.$height;
+  padding: 1.5rem;
+  gap: 1rem;
+  border-radius: vFC.$border-radius;
+  border: vFC.$border;
+  background: vFC.$background-gradient;
+  box-shadow: vFC.$box-shadow;
+  backdrop-filter: vFC.$backdrop-filter;
+  
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  &__back-btn {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.5rem;
+    @include mFC.flex-center;
+    padding: 0.75rem;
+    gap: 0.25rem;
+    border-radius: 0.5rem;
+    transition: background 0.4s;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--Black-4, rgba(0, 0, 0, 0.04));
+    }
+
+    img {
+      width: vFC.$size-icon;
+      height: vFC.$size-icon;
+    }
+  }
+
+  &__day {
+    @include mFC.flex-column-stretch-start;
+    gap: 0.5rem;
+
+    .forecast__date {
+      color: vFC.$text-color;
+      
+      font-family: vFC.$font-family;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1rem;
+     
+      letter-spacing: 0.00875rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 0.25rem;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 65%;
+        height: 2px;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent);
+        border-radius: 4px;
+        transform-origin: left;
+        transition: all 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 75%;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent);
+      }
+    }
+  }
+
+  &__info {
+    @include mFC.flex-start-stretch;
+    justify-content: space-evenly;
+    gap: 0.4rem;
+    
+
+    .forecast__temp {
+      
+      font-family: vFC.$font-family;
+      font-size: 2.75rem;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 3rem;
+     
+      letter-spacing: 0.0375rem;
+      background: linear-gradient(180deg, #000 0%, #000 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      min-width: 4.5rem;
+      max-width: 4rem;
+    }
+
+    .forecast__details {
+      @include mFC.flex-column-between-start-stretch;
+      min-width: 7rem;
+      max-width: 7rem;
+
+      .forecast__condition {
+        color: vFC.$text-color;
+        
+        font-family: vFC.$font-family;
+        font-size: 0.8125rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1rem;
+        
+        letter-spacing: 0.00813rem;
+      }
+
+      .forecast__feels {
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
+
+        .forecast__feels-label {
+          color: vFC.$primary-color;
+         
+          font-family: vFC.$font-family;
+          font-size: 0.8125rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1rem;
+         
+          letter-spacing: 0.00813rem;
+        }
+
+        .forecast__feels-value {
+          color: vFC.$primary-color;
+          
+          font-family: vFC.$font-family;
+          font-size: 1.25rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 1.25rem;
+          
+          letter-spacing: 0.01875rem;
+        }
+      }
+    }
+
+    .forecast__icon {
+      @include mFC.flex-column-center-center-stretch;
+      max-width: 25%;
+      gap: 0.25rem;
+      flex: 1 0 0;
+    }
+  }
+}

@@ -114,33 +114,56 @@ export function LoginPage() {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
+    <Container component="main" maxWidth="sm" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
       <Paper
-        elevation={3}
+        elevation={6}
         sx={{
-          p: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          mt: 8,
+          p: { xs: 3, sm: 5 },
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          borderRadius: '12px',
+          backgroundColor: '#fafafa',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
         }}
       >
         <Typography
           component="h1"
           variant="h4"
-          sx={{ mb: 3, color: "gray", fontWeight: "bold" }}
+          sx={{ 
+            mb: 4, 
+            color: '#333',
+            fontWeight: 600,
+            letterSpacing: '-0.5px'
+          }}
         >
           Weather Explore 2.0
         </Typography>
 
-        <Typography component="h2" variant="h5" sx={{ mb: 3 }}>
+        <Typography 
+          component="h2" 
+          variant="h5" 
+          sx={{ 
+            mb: 3,
+            color: '#444',
+            fontWeight: 500
+          }}
+        >
           {isRegister ? "Create an Account" : "Sign In"}
         </Typography>
 
         {error && (
           <Alert
             severity="error"
-            sx={{ mb: 2, width: "100%" }}
+            sx={{ 
+              mb: 3, 
+              width: "100%",
+              borderRadius: '8px',
+              '& .MuiAlert-icon': {
+                color: '#666'
+              }
+            }}
             onClose={clearError}
           >
             {error}
@@ -150,7 +173,7 @@ export function LoginPage() {
         <Box
           component="form"
           onSubmit={handleSubmit}
-          sx={{ width: "100%", mb: 2 }}
+          sx={{ width: "100%", mb: 3 }}
         >
           <TextField
             margin="normal"
@@ -161,7 +184,24 @@ export function LoginPage() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            sx={{ mb: 2 }}
+            sx={{ 
+              mb: 3,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '8px',
+                '& fieldset': {
+                  borderColor: '#ddd',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#aaa',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#666',
+                },
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#666',
+              },
+            }}
           />
           <TextField
             margin="normal"
@@ -172,12 +212,31 @@ export function LoginPage() {
             autoComplete={isRegister ? "new-password" : "current-password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            sx={{ 
+              mb: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '8px',
+                '& fieldset': {
+                  borderColor: '#ddd',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#aaa',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#666',
+                },
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#666',
+              },
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
                     onClick={() => setShowPassword(!showPassword)}
                     edge="end"
+                    sx={{ color: '#666' }}
                   >
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
@@ -185,100 +244,176 @@ export function LoginPage() {
               ),
             }}
           />
-          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
             <Link
-              component="button"
+              component="span"
               variant="body2"
               onClick={(e) => {
                 e.preventDefault();
                 setIsResetDialogOpen(true);
               }}
-              sx={{ textDecoration: "none" }}
+              sx={{ 
+                textDecoration: "none",
+                color: '#666',
+                '&:hover': {
+                  color: '#333',
+                },
+                cursor: 'pointer'
+              }}
             >
               Forgot password?
             </Link>
             <Link
-              component="button"
+              component="span"
               variant="body2"
               onClick={(e) => {
                 e.preventDefault();
                 toggleMode();
               }}
-              sx={{ textDecoration: "none" }}
+              sx={{ 
+                textDecoration: "none",
+                color: '#666',
+                '&:hover': {
+                  color: '#333',
+                },
+                cursor: 'pointer'
+              }}
             >
-              {isRegister
-                ? "Already have an account? Sign in"
-                : "Need an account? Sign up"}
+              {isRegister ? "Already have an account? Sign In" : "Don't have an account? Register"}
             </Link>
           </Box>
 
-          <Button
+          <LoadingButton
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            disabled={isLoading}
+            loading={isLoading}
+            disabled={!email || !password}
+            sx={{
+              mt: 2,
+              mb: 3,
+              py: 1.5,
+              bgcolor: '#444',
+              color: 'white',
+              boxShadow: 'none',
+              borderRadius: '8px',
+              '&:hover': {
+                bgcolor: '#333',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+              },
+              '&.Mui-disabled': {
+                bgcolor: '#eee',
+                color: '#999',
+              },
+            }}
           >
-            {isLoading ? (
-              <CircularProgress size={24} color="inherit" />
-            ) : isRegister ? (
-              "Sign Up"
-            ) : (
-              "Sign In"
-            )}
-          </Button>
+            {isRegister ? "Register" : "Sign In"}
+          </LoadingButton>
         </Box>
 
-        <Divider sx={{ width: "100%", mb: 2 }}>
-          <Typography color="textSecondary">OR</Typography>
+        <Divider sx={{ width: "100%", mb: 3, color: '#ccc' }}>
+          <Typography variant="body2" sx={{ color: '#888' }}>OR</Typography>
         </Divider>
 
         <Button
           fullWidth
           variant="outlined"
-          startIcon={isLoading ? <CircularProgress size={20} /> : <Google />}
+          startIcon={<Google />}
           onClick={handleGoogleLogin}
           disabled={isLoading}
+          sx={{
+            py: 1.5,
+            color: '#444',
+            borderColor: '#ddd',
+            borderRadius: '8px',
+            '&:hover': {
+              borderColor: '#999',
+              bgcolor: '#f9f9f9',
+            },
+            '& .MuiButton-startIcon': {
+              color: '#444'
+            }
+          }}
         >
-          Continue with Google
+          {isLoading ? <CircularProgress size={24} /> : "Continue with Google"}
         </Button>
       </Paper>
 
-      {/* Password Reset Dialog */}
-      <Dialog open={isResetDialogOpen} onClose={handleResetDialogClose}>
-        <DialogTitle>Reset Password</DialogTitle>
+      <Dialog open={isResetDialogOpen} onClose={handleResetDialogClose} PaperProps={{
+        sx: { 
+          borderRadius: '12px',
+          bgcolor: '#fafafa',
+          p: 1
+        }
+      }}>
+        <DialogTitle sx={{ color: '#444' }}>Reset Password</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ mb: 2 }}>
-            {isResetEmailSent
-              ? "Password reset email has been sent. Please check your inbox."
-              : "Enter your email address and we'll send you a link to reset your password."}
+          <DialogContentText sx={{ color: '#666', mb: 2 }}>
+            Enter your email address and we will send you a link to reset your password.
           </DialogContentText>
-          {resetEmailError && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {resetEmailError}
+          {isResetEmailSent ? (
+            <Alert severity="success" sx={{ borderRadius: '8px' }}>
+              Password reset email sent. Please check your inbox.
             </Alert>
+          ) : (
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Email Address"
+              type="email"
+              fullWidth
+              value={resetEmail}
+              onChange={(e) => setResetEmail(e.target.value)}
+              error={!!resetEmailError}
+              helperText={resetEmailError}
+              sx={{ 
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '8px',
+                  '& fieldset': {
+                    borderColor: '#ddd',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#aaa',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#666',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#666',
+                },
+              }}
+            />
           )}
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="outlined"
-            value={resetEmail}
-            onChange={(e) => setResetEmail(e.target.value)}
-            disabled={isResetEmailSent}
-            error={!!resetEmailError}
-          />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleResetDialogClose} disabled={isLoading}>
+        <DialogActions sx={{ px: 3, pb: 3 }}>
+          <Button 
+            onClick={handleResetDialogClose} 
+            sx={{ 
+              color: '#666',
+              '&:hover': {
+                bgcolor: '#f5f5f5',
+                color: '#444'
+              }
+            }}
+          >
             Cancel
           </Button>
           <LoadingButton
-            onClick={handleForgotPassword}
             loading={isLoading}
             disabled={isResetEmailSent}
+            onClick={handleForgotPassword}
+            sx={{
+              bgcolor: '#444',
+              color: 'white',
+              '&:hover': {
+                bgcolor: '#333',
+              },
+              '&.Mui-disabled': {
+                bgcolor: '#eee',
+                color: '#999',
+              },
+            }}
           >
             Reset Password
           </LoadingButton>

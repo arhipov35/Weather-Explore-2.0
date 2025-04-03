@@ -4,6 +4,7 @@ import { WeatherIcon } from "../../shared/WeatherIcon/WeatherIcon";
 import { DeleteCard } from "../DeleteCard/DeleteCard";
 import "./WeatherCard.scss";
 import UpdateCard from "../UpdateCard/UpdateCard";
+import ForecastCard from "../ForecastCard/ForecastCard";
 
 interface WeatherCardProps {
   weatherData: WeatherData;
@@ -11,9 +12,14 @@ interface WeatherCardProps {
   cityId: string;
 }
 
-export function WeatherCard({ weatherData, onDelete, cityId }: WeatherCardProps) {
+export function WeatherCard({
+  weatherData,
+  onDelete,
+  cityId,
+}: WeatherCardProps) {
   const [showDeleteCard, setShowDeleteCard] = useState<boolean>(false);
   const [showUpdateCard, setShowUpdateCard] = useState<boolean>(false);
+  const [showForecastCard, setShowForecastCard] = useState<boolean>(false);
 
   const handleDelete = () => {
     if (onDelete) {
@@ -33,9 +39,15 @@ export function WeatherCard({ weatherData, onDelete, cityId }: WeatherCardProps)
 
   if (showUpdateCard) {
     return (
-      <UpdateCard
-        onCancel={() => setShowUpdateCard(false)}
-        cityId={cityId}
+      <UpdateCard onCancel={() => setShowUpdateCard(false)} cityId={cityId} />
+    );
+  }
+
+  if (showForecastCard) {
+    return (
+      <ForecastCard
+        onCancel={() => setShowForecastCard(false)}
+        weather={weatherData}
       />
     );
   }
@@ -43,10 +55,16 @@ export function WeatherCard({ weatherData, onDelete, cityId }: WeatherCardProps)
   return (
     <div className="main-card">
       <div className="card-navigation">
-        <div className="card-navigation-icon" onClick={() => setShowUpdateCard(true)}>
+        <div
+          className="card-navigation-icon"
+          onClick={() => setShowUpdateCard(true)}
+        >
           <img src="/src/assets/img/edit.svg" alt="edit" />
         </div>
-        <div className="card-navigation-icon">
+        <div
+          className="card-navigation-icon"
+          onClick={() => setShowForecastCard(true)}
+        >
           <img src="/src/assets/img/forecast.svg" alt="forecast" />
         </div>
         <div
