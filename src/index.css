@@ -9,3 +9,6 @@
 .page {
   height: calc(100vh - 4rem);
 }
+.thumb {
+  display: none !important;
+}

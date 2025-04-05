@@ -4,12 +4,12 @@ export type WeatherIcon = {
 };
 
 export const weatherIcons: WeatherIcon[] = [
-    { description: "Clear", photo: "/src/assets/img/sun.svg" },
-    { description: "Clouds", photo: "/src/assets/img/cloud.svg" },
-    { description: "Rain", photo: "/src/assets/img/rain.svg" },
-    { description: "Mist", photo: "/src/assets/img/mist.svg" },
-    { description: "Drizzle", photo: "/src/assets/img/drizzle.svg" },
-    { description: "Haze", photo: "/src/assets/img/haze.svg" },
-    { description: "Snow", photo: "/src/assets/img/snow.svg" },
-    { description: "Smoke", photo: "/src/assets/img/smoke.svg" },
+    { description: "Clear", photo: "/src/assets/img/imgwepb/sun.webp" },
+    { description: "Clouds", photo: "/src/assets/img/imgwepb/cloud.webp" },
+    { description: "Rain", photo: "/src/assets/img/imgwepb/rain.webp" },
+    { description: "Mist", photo: "/src/assets/img/imgwepb/mist.webp" },
+    { description: "Drizzle", photo: "/src/assets/img/imgwepb/drizzle.webp" },
+    { description: "Haze", photo: "/src/assets/img/imgwepb/haze.webp" },
+    { description: "Snow", photo: "/src/assets/img/imgwepb/snow.webp" },
+    { description: "Smoke", photo: "/src/assets/img/imgwepb/smoke.webp" },
 ];

@@ -19,6 +19,7 @@ interface List {
   main: Main;
   wind: Wind;
   weather: Weather[];
+  dt: number;
 }
 
 interface City {
