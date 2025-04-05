@@ -49,7 +49,7 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
   const [isInitialView, setIsInitialView] = useState<boolean>(true);
   const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
   async function ApiWeather(name: string, api: string) {
-    const request = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${name.trim()}&appid=${api}&units=metric`)
+    const request = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${name.trim().toLowerCase()}&appid=${api}&units=metric`)
     return request;
   }
   

@@ -24,19 +24,31 @@ export function AddCard({ index, onCancel }: AddCardProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (cityInput.trim()) {
+      await handleAddCity(cityInput);
+    }
+  };
+
+  // Функція для додавання міста, яка використовується як при відправці форми, 
+  // так і при виборі міста зі списку
+  const handleAddCity = async (city: string) => {
+    if (city.trim()) {
       try {
-        const result = await addCity(cityInput, index);
+        const result = await addCity(city, index);
         if (typeof result === 'string') {
           setLocalError(result);
+          return false;
         } else {
           setCityInput(""); // Очищаємо поле після успішного додавання
+          return true;
         }
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : "Failed to add the city";
         setLocalError(errorMessage);
         console.error("Error adding city:", err);
+        return false;
       }
     }
+    return false;
   };
 
   return (
@@ -51,6 +63,7 @@ export function AddCard({ index, onCancel }: AddCardProps) {
           placeholder="Enter city name"
           error={!!localError}
           errorMessage={localError}
+          onCitySelect={handleAddCity} // Додаємо обробник вибору міста
         />
       </form>
     </div>

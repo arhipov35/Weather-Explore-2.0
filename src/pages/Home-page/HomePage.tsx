@@ -24,10 +24,17 @@ export function HomePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const errorMessage = await addCity(cityInput, 0);
-    setCityInput("");
-    if (errorMessage) {
-      setError(errorMessage);
+    await handleCitySelect(cityInput);
+  };
+
+  
+  const handleCitySelect = async (city: string) => {
+    if (city.trim()) {
+      const errorMessage = await addCity(city, 0);
+      setCityInput("");
+      if (errorMessage) {
+        setError(errorMessage);
+      }
     }
   };
 
@@ -45,6 +52,7 @@ export function HomePage() {
           onCityInputChange={handleCityInputChange}
           loading={loading}
           error={error}
+          onCitySelect={handleCitySelect} 
         />
       ) : (
         <MainCards />

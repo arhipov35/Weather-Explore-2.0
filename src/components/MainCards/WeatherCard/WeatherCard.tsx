@@ -39,7 +39,11 @@ export function WeatherCard({
 
   if (showUpdateCard) {
     return (
-      <UpdateCard onCancel={() => setShowUpdateCard(false)} cityId={cityId} />
+      <UpdateCard 
+        onCancel={() => setShowUpdateCard(false)} 
+        cityId={cityId} 
+        currentCity={weatherData.city.name} 
+      />
     );
   }
 
@@ -94,11 +98,9 @@ export function WeatherCard({
         </div>
       </div>
       <div className="main-card-photo">
-        <div className="main-card-photo-icon">
           <WeatherIcon
             description={weatherData.list[0].weather[0].main}
           ></WeatherIcon>
-        </div>
       </div>
       <div className="main-card-hum-wind">
         <div className="container-hum-wind">
