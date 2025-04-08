@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { WeatherData } from "../../../services/openWeather";
+import { WeatherData } from "../../../types/weather.types";
 import { WeatherIcon } from "../../shared/WeatherIcon/WeatherIcon";
 import { DeleteCard } from "../DeleteCard/DeleteCard";
 import "./WeatherCard.scss";

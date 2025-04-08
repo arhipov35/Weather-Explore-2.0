@@ -1,4 +1,4 @@
-import { WeatherData } from "../../../services/openWeather";
+import { WeatherData } from "../../../types/weather.types";
 import { WeatherIcon } from "../../shared/WeatherIcon/WeatherIcon";
 import "./ForecastCard.scss";
 

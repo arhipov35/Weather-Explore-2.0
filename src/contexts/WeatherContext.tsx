@@ -14,7 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "./AuthContext";
 import configuration from "../configuration";
-import { WeatherData } from "../services/openWeather";
+import { WeatherData } from "../types/weather.types";
 
 
 export interface City {
