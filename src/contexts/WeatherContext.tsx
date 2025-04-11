@@ -168,9 +168,10 @@ export function WeatherProvider({ children }: { children: ReactNode }) {
   
       setCities(prevCities => prevCities.filter(city => city.id !== cityId));
       
-      
+
       const cityRef = doc(db, "cities", cityId);
       await deleteDoc(cityRef);
+      
     } catch (error) {
       console.error("Error deleting city:", error);
       setError("Failed to delete the city");

@@ -26,15 +26,15 @@ export function CustomInput({
   labelText = "Add a city",
   onCitySelect,
 }: CustomInputProps) {
+
+
   const [cities, setCities] = useState<Country>({});
+
   useEffect(() => {
-    // Якщо поле введення порожнє, очищуємо результати
     if (!value.trim()) {
       setCities({});
       return;
     }
-
-    // Фільтруємо міста за введеним текстом
     const results: Country = {};
 
     for (const [countryName, cityList] of Object.entries(country)) {
@@ -48,9 +48,9 @@ export function CustomInput({
         }
       }
     }
-
     setCities(results);
   }, [value]);
+  
   return (
     <div className="card-field">
       <p className="label">{labelText}</p>
@@ -66,17 +66,9 @@ export function CustomInput({
           <ul>
             {Object.entries(cities).map(([country, cityList]) => (
               cityList && cityList.map((city) => (
-                <li 
-                  key={`${country}-${city}`} 
-                  onClick={() => {
-                    // Змінюємо значення поля введення
-                    onChange({ target: { value: city } } as any);
-                    
-                    // Якщо є функція onCitySelect, викликаємо її
-                    if (onCitySelect) {
-                      onCitySelect(city);
-                    }
-                  }}
+                <li
+                  key={`${country}-${city}`}
+                  onClick={() => {onCitySelect?.(city)}}
                 >
                   {city}, {country}
                 </li>
