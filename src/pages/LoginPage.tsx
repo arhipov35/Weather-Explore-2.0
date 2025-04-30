@@ -261,7 +261,7 @@ export function LoginPage() {
                 cursor: 'pointer'
               }}
             >
-              Forgot password?
+              Forgot password? 
             </Link>
             <Link
               component="span"

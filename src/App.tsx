@@ -6,6 +6,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { RefetchProvider } from "./contexts/RefetchContext";
 import { WeatherProvider } from "./contexts/WeatherContext";
+import { ThemeHandler, ThemeProvider } from "./contexts/ThemeContext";
 
 
 const HomePage = lazy(() => import("./pages/Home-page/HomePage").then(module => ({
@@ -25,53 +26,57 @@ const LoadingFallback = () => (
   </div>
 );
 
+
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <RefetchProvider>
-          <WeatherProvider>
-            <Routes>
-              {/* Public route without layout */}
-              <Route
-                path="/login"
-                element={
-                  <Suspense fallback={<LoadingFallback />}>
-                    <LoginPage />
-                  </Suspense>
-                }
-              />
-
-              {/* Protected routes with layout */}
-              <Route element={<MainLayout />}>
+      <ThemeProvider>
+        <ThemeHandler />
+        <AuthProvider>
+          <RefetchProvider>
+            <WeatherProvider>
+              <Routes>
+                {/* Public route without layout */}
                 <Route
-                  path="/"
+                  path="/login"
                   element={
-                    <ProtectedRoute>
-                      <Suspense fallback={<LoadingFallback />}>
-                        <HomePage />
-                      </Suspense>
-                    </ProtectedRoute>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <LoginPage />
+                    </Suspense>
                   }
                 />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <Suspense fallback={<LoadingFallback />}>
-                        <ProfilePage />
-                      </Suspense>
-                    </ProtectedRoute>
-                  }
-                />
-              </Route>
 
-              {/* Catch all route */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </WeatherProvider>
-        </RefetchProvider>
-      </AuthProvider>
+                {/* Protected routes with layout */}
+                <Route element={<MainLayout />}>
+                  <Route
+                    path="/"
+                    element={
+                      <ProtectedRoute>
+                        <Suspense fallback={<LoadingFallback />}>
+                          <HomePage />
+                        </Suspense>
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProtectedRoute>
+                        <Suspense fallback={<LoadingFallback />}>
+                          <ProfilePage />
+                        </Suspense>
+                      </ProtectedRoute>
+                    }
+                  />
+                </Route>
+
+                {/* Catch all route */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </WeatherProvider>
+          </RefetchProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

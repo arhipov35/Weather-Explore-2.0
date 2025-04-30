@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import MusicSystem from "./MusicSystem/MusicSystem";
 import { AuthSection } from "./AuthSection/AuthSection";
 import { useRefetch } from "../../contexts/RefetchContext";
+import ThemeSelection from "./ThemeSelection/ThemeSelection";
 
 function Header() {
   const { toggle } = useRefetch();
@@ -11,10 +12,13 @@ function Header() {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="navbar-section">
-            <Link onClick={toggle} className="navbar-brand" to="/">
-              Weather Explore 2.0
-            </Link>
+            <div className="navbar-theme">
+              <ThemeSelection />
+            </div>
           </div>
+          <Link onClick={toggle} className="navbar-brand" to="/">
+            Weather Explore 2.0
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

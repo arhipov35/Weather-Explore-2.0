@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CustomInput } from "../../shared/CustomInput/CustomInput";
 import { useWeather } from "../../../contexts/WeatherContext";
 import "./AddCard.scss";
+import { BackIcon } from "../../shared/icons";
 
 interface AddCardProps {
   index: number;
@@ -52,7 +53,7 @@ export function AddCard({ index, onCancel }: AddCardProps) {
   return (
     <div className="add-card">
       <div className="back-icon-add-card" onClick={onCancel}>
-        <img src="/src/assets/img/back.svg" alt="back" />
+        <BackIcon />
       </div>
       <form onSubmit={handleSubmit}>
         <CustomInput

@@ -6,11 +6,13 @@ import { AddCard } from "./AddCard/AddCard";
 import "./MainCards.scss";
 
 
+
 export function MainCards() {
   const { cities, deleteCity } = useWeather();
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const cityMap = new Map(cities.map((city) => [city.index, city]));
+  
   return (
     <div className="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 g-4" >
       {Array.from({ length: 8 }).map((_, index) => {
@@ -31,6 +33,7 @@ export function MainCards() {
             ) : (
               <CardHover onClick={() => setHoverIndex(index)} />
             )}
+
           </div>
         );
       })}

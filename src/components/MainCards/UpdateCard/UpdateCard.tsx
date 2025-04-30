@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CustomInput } from "../../shared/CustomInput/CustomInput";
 import { useWeather } from "../../../contexts/WeatherContext";
 import "./UpdateCard.scss";
+import { BackIcon } from "../../shared/icons";
 
 interface UpdateCardProps {
     onCancel: () => void;
@@ -54,7 +55,7 @@ export default function UpdateCard({ onCancel, cityId, currentCity = "" }: Updat
     return (
         <div className="update-card">
             <div className="back-icon-update-card" onClick={onCancel}>
-                <img src="/src/assets/img/back.svg" alt="back" />
+                <BackIcon />
             </div>
             <form onSubmit={handleSubmit}>
                 <CustomInput

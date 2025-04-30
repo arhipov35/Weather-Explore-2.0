@@ -5,6 +5,7 @@ import { DeleteCard } from "../DeleteCard/DeleteCard";
 import "./WeatherCard.scss";
 import UpdateCard from "../UpdateCard/UpdateCard";
 import ForecastCard from "../ForecastCard/ForecastCard";
+import { EditIcon, ForecastIcon, DeleteIcon, HumidityIcon, WindIcon } from "../../shared/icons";
 
 interface WeatherCardProps {
   weatherData: WeatherData;
@@ -39,10 +40,10 @@ export function WeatherCard({
 
   if (showUpdateCard) {
     return (
-      <UpdateCard 
-        onCancel={() => setShowUpdateCard(false)} 
-        cityId={cityId} 
-        currentCity={weatherData.city.name} 
+      <UpdateCard
+        onCancel={() => setShowUpdateCard(false)}
+        cityId={cityId}
+        currentCity={weatherData.city.name}
       />
     );
   }
@@ -63,19 +64,19 @@ export function WeatherCard({
           className="card-navigation-icon"
           onClick={() => setShowUpdateCard(true)}
         >
-          <img src="/src/assets/img/edit.svg" alt="edit" />
+          <EditIcon />
         </div>
         <div
           className="card-navigation-icon"
           onClick={() => setShowForecastCard(true)}
         >
-          <img src="/src/assets/img/forecast.svg" alt="forecast" />
+          <ForecastIcon />
         </div>
         <div
           className="card-navigation-icon"
           onClick={() => setShowDeleteCard(true)}
         >
-          <img src="/src/assets/img/delete.svg" alt="delete" />
+          <DeleteIcon />
         </div>
       </div>
       <div className="main-card-data">
@@ -98,18 +99,14 @@ export function WeatherCard({
         </div>
       </div>
       <div className="main-card-photo">
-          <WeatherIcon
-            description={weatherData.list[0].weather[0].main}
-          ></WeatherIcon>
+        <WeatherIcon
+          description={weatherData.list[0].weather[0].main}
+        ></WeatherIcon>
       </div>
       <div className="main-card-hum-wind">
         <div className="container-hum-wind">
           <div className="hum-wind">
-            <img
-              className="icon-hum-wind"
-              src="/src/assets/img/humidity.svg"
-              alt=""
-            />
+            <HumidityIcon className="icon-hum-wind" />
             <p className="caption-hum-wind">Humidity</p>
           </div>
           <h4 className="interest-hum-wind">
@@ -118,11 +115,7 @@ export function WeatherCard({
         </div>
         <div className="container-hum-wind">
           <div className="hum-wind">
-            <img
-              className="icon-hum-wind"
-              src="/src/assets/img/wind.svg"
-              alt=""
-            />
+            <WindIcon className="icon-hum-wind" />
             <p className="caption-hum-wind">Wind</p>
           </div>
           <div className="interest-hum-wind-container">

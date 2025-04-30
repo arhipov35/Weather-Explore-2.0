@@ -1,0 +1,594 @@
+// Common styles for all themes
+:root {
+  --border-color-white: var(--Gray-6, #7E7E7E);
+  --border-color-black: rgb(255 255 255 / 20%);
+  --border-color-gray: rgb(255 255 255 / 20%);
+  --border-color-higgs: rgb(255 255 255 / 20%);
+  --border-color-second-gray: 1px solid white;
+
+  --color-text-white: var(--Gray-6, #7E7E7E);
+  --color-text-black: white;
+  --color-text-higgs: white;
+
+  --background-black: white;
+  --background-higgs: white;
+  --background-white: var(--Gray-6, #7E7E7E);
+
+  --hover-color-black: rgba(255, 255, 255, 0.134);
+  --hover-color-higgs: rgba(255, 255, 255, 0.192);
+
+  --color-higgs: conic-gradient(from 180deg at 50% 50%, #FFCC3B 0deg, #FFC013 35.84590494632721deg, #D29324 63.13774108886719deg, #FFE347 120.6983757019043deg, rgba(205, 145, 33, 0.92) 142.35803961753845deg, #EEB927 161.68076992034912deg, #F4C53F 204.59886074066162deg, #E3A405 229.1525959968567deg, rgba(255, 197, 8, 0.91) 257.649929523468deg, #BF8317 274.0947461128235deg, #F8BF30 302.5307536125183deg, #E0A02D 331.60956859588623deg, #F4C53F 340.40122747421265deg, rgba(255, 203, 53, 0.92) 349.48166370391846deg, #F4C53F 360deg);
+  --color-linear-higgs: linear-gradient(180deg, #FFCC3B 0%, #FFC013 9.96%, #D29324 17.54%, #FFE347 33.53%, rgba(205, 145, 33, 0.92) 39.54%, #EEB927 44.91%, #F4C53F 56.83%, #E3A405 63.65%, rgba(255, 197, 8, 0.91) 71.57%, #BF8317 76.14%, #F8BF30 84.04%, #E0A02D 92.11%, #F4C53F 94.56%, rgba(255, 203, 53, 0.92) 97.08%, #F4C53F 100%);
+}
+
+// Styles for the white theme
+.theme-white {
+  .MuiTypography-root {
+    color: var(--color-text-white);
+  }
+
+  .profile-page {
+    &-edit-button {
+      background: var(--background-white);
+    }
+
+    &-cancel-button {
+      color: var(--color-text-white);
+    }
+
+    &-save-button {
+      background: var(--background-white);
+    }
+
+    &-camera-button {
+      background-color: var(--Gray-6, #d3d3d3);
+
+      &:hover {
+        background-color: var(--Gray-6, #b7b6b6e2);
+      }
+    }
+
+    &-text-field {
+      .MuiOutlinedInput-root {
+        color: var(--color-text-white);
+
+        & fieldset {
+          border-color: var(--border-color-white);
+        }
+
+        &:hover fieldset {
+          border-color: var(--border-color-white);
+        }
+
+        &.Mui-focused fieldset {
+          border-color: var(--border-color-white);
+        }
+      }
+    }
+  }
+}
+
+// Styles for the black theme
+.theme-black {
+  .MuiTypography-root {
+    color: white;
+  }
+
+  .css-1xrrpwr-MuiTypography-root {
+    color: black;
+  }
+
+  .profile-page {
+    &-paper {
+      border: 1px solid var(--border-color-black);
+    }
+
+    &-edit-button {
+      background: #ffffff47;
+    }
+
+    &-cancel-button {
+      color: var(--color-text-black);
+      border-color: #7E7E7E;
+
+      &:hover {
+        border-color: white;
+      }
+    }
+
+    &-save-button {
+      background: #ffffff47;
+    }
+
+    &-camera-button {
+      background: var(--color-text-black);
+
+      &:hover {
+        background-color: #ffffffd2;
+      }
+    }
+
+    &-text-field {
+      .MuiInputLabel-root {
+        color: var(--color-text-black);
+      }
+
+      .MuiOutlinedInput-root {
+        color: var(--color-text-black);
+
+        & fieldset {
+          border-color: var(--border-color-black);
+        }
+
+        &:hover fieldset {
+          border-color: var(--border-color-black);
+        }
+
+        &.Mui-focused fieldset {
+          border-color: var(--border-color-black);
+        }
+      }
+    }
+  }
+
+
+  .navbar-brand {
+    color: var(--color-text-black) !important;
+  }
+
+  .burger-icon {
+    span {
+      background-color: var(--background-black) !important;
+    }
+  }
+
+  .wave {
+    background-color: var(--background-black);
+  }
+
+  .main-card {
+    border-color: var(--border-color-black);
+
+    .card-navigation-icon:hover {
+      background: var(--hover-color-black) !important;
+    }
+
+    .hum-wind {
+      background: rgb(0 0 0 / 24%) !important;
+    }
+  }
+
+  .main-card-indicators-temp {
+    background: var(--background-black) !important;
+    background-clip: text !important;
+  }
+
+  .main-card-city-name,
+  .main-card-caption,
+  .main-card-feels,
+  .caption-hum-wind,
+  .interest-hum-wind {
+    color: var(--color-text-black) !important;
+  }
+
+  .card-hover {
+    border-color: var(--border-color-black);
+
+    .card-hover-caption {
+      color: var(--color-text-black) !important;
+    }
+  }
+
+  .update-card {
+    border-color: var(--border-color-black);
+
+    .back-icon-update-card:hover {
+      background: var(--hover-color-black) !important;
+    }
+  }
+
+  .delete-card {
+    border-color: var(--border-color-black);
+
+    .delete-card-text,
+    .delete-card-button {
+      color: var(--color-text-black) !important;
+    }
+
+    .cancel:hover {
+      background: var(--hover-color-black) !important;
+    }
+  }
+
+  .add-card {
+    border-color: var(--border-color-black);
+
+    .back-icon-add-card:hover {
+      background: var(--hover-color-black) !important;
+    }
+  }
+
+  .forecast {
+    border-color: var(--border-color-black);
+
+    .forecast__date,
+    .forecast__condition,
+    .forecast__feels-label,
+    .forecast__feels-value {
+      color: var(--color-text-black) !important;
+    }
+
+    .forecast__temp {
+      background: var(--background-black) !important;
+      background-clip: text !important;
+    }
+
+    .forecast__date::after {
+      background: linear-gradient(to right, rgb(255 255 255), transparent);
+    }
+
+    .forecast__back-btn:hover {
+      background: var(--hover-color-black) !important;
+    }
+  }
+
+  .custom-input {
+    background: var(--background-black) !important;
+  }
+
+  .card-field {
+
+    .label,
+    .caption {
+      color: var(--color-text-black);
+    }
+
+    .error {
+      color: var(--Red-60, rgba(255, 0, 0, 0.6)) !important;
+    }
+
+    &:focus-within .label {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  .back-icon-add-card:hover {
+    background: var(--hover-color-black);
+  }
+
+  input[type="range"]:active::-ms-thumb {
+    background: var(--background-black);
+  }
+
+  input[type="range"]:active::-moz-range-thumb {
+    background: var(--background-black);
+  }
+
+  input[type="range"]:active::-webkit-slider-thumb {
+    background: var(--background-black);
+  }
+}
+
+// Styles for the gray theme
+.theme-gray {
+
+  .MuiTypography-root {
+    color: black;
+  }
+
+  .css-1xrrpwr-MuiTypography-root {
+    color: black;
+  }
+
+  .profile-page {
+    &-paper {
+      border: 1px solid var(--border-color-black);
+    }
+
+    &-edit-button {
+      background: rgb(117, 117, 117);
+    }
+
+    &-cancel-button {
+      color: black;
+
+      &:hover {
+        border-color: rgb(255, 255, 255);
+      }
+    }
+
+    &-save-button {
+      background: rgb(117, 117, 117);
+      color: white;
+    }
+
+    &-camera-button {
+      background: white;
+
+      &:hover {
+        background-color: #ffffffd2;
+      }
+
+    }
+
+    &-text-field {
+      .MuiInputLabel-root {
+        color: black;
+      }
+
+      .MuiOutlinedInput-root {
+        color: black;
+
+        & fieldset {
+          border-color: rgb(117, 117, 117);
+        }
+
+        &:hover fieldset {
+          border-color: rgb(117, 117, 117);
+        }
+
+        &.Mui-focused fieldset {
+          border-color: rgb(117, 117, 117);
+        }
+      }
+    }
+  }
+
+  .wave {
+    border: 1px solid white;
+  }
+
+  .main-card {
+    border-color: var(--border-color-gray);
+  }
+
+  .card-hover {
+    border-color: var(--border-color-gray);
+  }
+
+  .update-card {
+    border-color: var(--border-color-gray);
+  }
+
+  .add-card {
+    border-color: var(--border-color-gray);
+  }
+
+  .delete-card {
+    border-color: var(--border-color-gray);
+  }
+
+  .forecast {
+    border-color: var(--border-color-gray);
+  }
+}
+
+// Styles for the Higgs theme
+.theme-higgs {
+
+  .MuiTypography-root {
+    background: var(--color-higgs);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .css-1xrrpwr-MuiTypography-root {
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+
+  .profile-page {
+    &-paper {
+      border: 1px solid var(--border-color-black);
+    }
+
+    &-edit-button {
+      background: rgb(117, 117, 117);
+    }
+
+    &-cancel-button {
+      border-color: #7E7E7E;
+      color: var(--color-text-black);
+
+      &:hover {
+        border-color: rgb(255, 255, 255);
+      }
+    }
+
+    &-save-button {
+      background: rgb(117, 117, 117);
+    }
+
+    &-camera-button {
+      background: white;
+
+      &:hover {
+        background-color: #ffffffd2;
+      }
+    }
+
+    &-text-field {
+      .MuiInputLabel-root {
+        // color: white;
+        background: var(--color-higgs);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .MuiOutlinedInput-root {
+        // color: white;
+        background: var(--color-higgs);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        & fieldset {
+          border-color: white;
+        }
+
+        &:hover fieldset {
+          border-color: white;
+        }
+
+        &.Mui-focused fieldset {
+          border-color: white;
+        }
+      }
+    }
+  }
+
+
+  .wave {
+    background: var(--color-higgs);
+  }
+
+  .navbar-brand {
+    background: var(--color-higgs);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .burger-icon {
+    span {
+      background: var(--color-linear-higgs) !important;
+    }
+  }
+
+  .main-card {
+    border-color: var(--border-color-higgs);
+
+    .card-navigation-icon:hover {
+      background: var(--hover-color-higgs) !important;
+    }
+
+    .main-card-city-name,
+    .main-card-indicators-temp,
+    .main-card-caption,
+    .main-card-feels,
+    .caption-hum-wind,
+    .interest-hum-wind {
+      background: var(--color-higgs) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    .hum-wind {
+      background: rgb(0 0 0 / 24%) !important;
+    }
+
+    .custom-input {
+      background: var(--background-black) !important;
+    }
+  }
+
+  .card-hover {
+    border-color: var(--border-color-higgs);
+
+    .card-hover-caption {
+      background: var(--color-higgs) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+  }
+
+  .update-card {
+    border-color: var(--border-color-higgs);
+
+    .back-icon-update-card:hover {
+      background: var(--hover-color-higgs) !important;
+    }
+  }
+
+  .add-card {
+    border-color: var(--border-color-higgs);
+
+    .back-icon-add-card:hover {
+      background: var(--hover-color-higgs) !important;
+    }
+  }
+
+  .delete-card {
+    border-color: var(--border-color-higgs);
+
+    .delete-card-text {
+      background: var(--color-higgs) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    .delete-card-button {
+      color: var(--color-text-higgs) !important;
+    }
+
+    .cancel:hover {
+      background: var(--hover-color-higgs) !important;
+    }
+  }
+
+  .forecast {
+    border-color: var(--border-color-higgs);
+
+    .forecast__date,
+    .forecast__temp,
+    .forecast__condition,
+    .forecast__feels-label,
+    .forecast__feels-value {
+      background: var(--color-higgs) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    .forecast__date::after {
+      background: linear-gradient(to right, rgb(255 255 255), transparent);
+    }
+
+    .forecast__back-btn:hover {
+      background: var(--hover-color-higgs) !important;
+    }
+  }
+
+  input[type="range"]:active::-ms-thumb {
+    background: var(--color-higgs);
+  }
+
+  input[type="range"]:active::-moz-range-thumb {
+    background: var(--color-higgs);
+  }
+
+  input[type="range"]:active::-webkit-slider-thumb {
+    background: var(--color-higgs);
+  }
+
+  .custom-input {
+    background: var(--background-higgs) !important;
+  }
+
+  .card-field {
+
+    .label,
+    .caption {
+      background: var(--color-higgs);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .error {
+      background: var(--Red-60, rgba(255, 0, 0, 0.6)) !important;
+      background-clip: text !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+    }
+
+    &:focus-within .label {
+      color: rgb(255, 255, 255);
+    }
+  }
+}

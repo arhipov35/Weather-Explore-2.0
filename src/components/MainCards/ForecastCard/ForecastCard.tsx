@@ -1,6 +1,7 @@
 import { WeatherData } from "../../../types/weather.types";
 import { WeatherIcon } from "../../shared/WeatherIcon/WeatherIcon";
 import "./ForecastCard.scss";
+import { BackIcon } from "../../shared/icons";
 
 interface ForecastCardProps {
   onCancel: () => void;
@@ -27,7 +28,7 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
 
       if (
         !dailyForecasts[dateString] ||
-        (date.getHours() >= 12 && date.getHours() <= 15)
+        date.getHours() === 12
       ) {
         const dayNames = [
           "Sunday",
@@ -39,6 +40,9 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
           "Saturday",
         ];
 
+        // Записуємо в консоль дату та час вибраного прогнозу
+        console.log(`Прогноз для ${dateString}, час: ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`);
+
         dailyForecasts[dateString] = {
           date: dateString,
           dayName: dayNames[date.getDay()],
@@ -49,7 +53,14 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
       }
     });
 
-    return Object.values(dailyForecasts).slice(0, 4);
+    // Додатковий лог для перевірки остаточних вибраних прогнозів
+    const forecasts = Object.values(dailyForecasts).slice(0, 4);
+    console.log("Вибрані прогнози:", forecasts.map(f => ({
+      дата: f.date,
+      день: f.dayName
+    })));
+
+    return forecasts;
   };
 
   const forecastData = getNext4DaysForecast();
@@ -58,7 +69,7 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
     <>
       <div className="forecast">
         <div className="forecast__back-btn" onClick={onCancel}>
-          <img src="/src/assets/img/back.svg" alt="back" />
+          <BackIcon />
         </div>
         {forecastData.map((day, index) => (
           <div key={index} className="forecast__day">
