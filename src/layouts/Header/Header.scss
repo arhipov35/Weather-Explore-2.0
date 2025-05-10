@@ -32,6 +32,11 @@ header {
   .navbar-nav {
     @include mH.flex-align-center;
     gap: 1em;
+
+    .feedback-icon {
+      width: vH.$size-icon;
+      height: vH.$size-icon;
+    }
   }
 
   .navbar-toggler {

@@ -1,24 +1,58 @@
 // Common styles for all themes
 :root {
-  --border-color-white: var(--Gray-6, #7E7E7E);
+  --border-color-white: var(--Gray-6, #7e7e7e);
   --border-color-black: rgb(255 255 255 / 20%);
   --border-color-gray: rgb(255 255 255 / 20%);
   --border-color-higgs: rgb(255 255 255 / 20%);
   --border-color-second-gray: 1px solid white;
 
-  --color-text-white: var(--Gray-6, #7E7E7E);
+  --color-text-white: var(--Gray-6, #7e7e7e);
   --color-text-black: white;
   --color-text-higgs: white;
 
   --background-black: white;
   --background-higgs: white;
-  --background-white: var(--Gray-6, #7E7E7E);
+  --background-white: var(--Gray-6, #7e7e7e);
 
   --hover-color-black: rgba(255, 255, 255, 0.134);
   --hover-color-higgs: rgba(255, 255, 255, 0.192);
 
-  --color-higgs: conic-gradient(from 180deg at 50% 50%, #FFCC3B 0deg, #FFC013 35.84590494632721deg, #D29324 63.13774108886719deg, #FFE347 120.6983757019043deg, rgba(205, 145, 33, 0.92) 142.35803961753845deg, #EEB927 161.68076992034912deg, #F4C53F 204.59886074066162deg, #E3A405 229.1525959968567deg, rgba(255, 197, 8, 0.91) 257.649929523468deg, #BF8317 274.0947461128235deg, #F8BF30 302.5307536125183deg, #E0A02D 331.60956859588623deg, #F4C53F 340.40122747421265deg, rgba(255, 203, 53, 0.92) 349.48166370391846deg, #F4C53F 360deg);
-  --color-linear-higgs: linear-gradient(180deg, #FFCC3B 0%, #FFC013 9.96%, #D29324 17.54%, #FFE347 33.53%, rgba(205, 145, 33, 0.92) 39.54%, #EEB927 44.91%, #F4C53F 56.83%, #E3A405 63.65%, rgba(255, 197, 8, 0.91) 71.57%, #BF8317 76.14%, #F8BF30 84.04%, #E0A02D 92.11%, #F4C53F 94.56%, rgba(255, 203, 53, 0.92) 97.08%, #F4C53F 100%);
+  --color-higgs: conic-gradient(
+    from 180deg at 50% 50%,
+    #ffcc3b 0deg,
+    #ffc013 35.84590494632721deg,
+    #d29324 63.13774108886719deg,
+    #ffe347 120.6983757019043deg,
+    rgba(205, 145, 33, 0.92) 142.35803961753845deg,
+    #eeb927 161.68076992034912deg,
+    #f4c53f 204.59886074066162deg,
+    #e3a405 229.1525959968567deg,
+    rgba(255, 197, 8, 0.91) 257.649929523468deg,
+    #bf8317 274.0947461128235deg,
+    #f8bf30 302.5307536125183deg,
+    #e0a02d 331.60956859588623deg,
+    #f4c53f 340.40122747421265deg,
+    rgba(255, 203, 53, 0.92) 349.48166370391846deg,
+    #f4c53f 360deg
+  );
+  --color-linear-higgs: linear-gradient(
+    180deg,
+    #ffcc3b 0%,
+    #ffc013 9.96%,
+    #d29324 17.54%,
+    #ffe347 33.53%,
+    rgba(205, 145, 33, 0.92) 39.54%,
+    #eeb927 44.91%,
+    #f4c53f 56.83%,
+    #e3a405 63.65%,
+    rgba(255, 197, 8, 0.91) 71.57%,
+    #bf8317 76.14%,
+    #f8bf30 84.04%,
+    #e0a02d 92.11%,
+    #f4c53f 94.56%,
+    rgba(255, 203, 53, 0.92) 97.08%,
+    #f4c53f 100%
+  );
 }
 
 // Styles for the white theme
@@ -26,7 +60,10 @@
   .MuiTypography-root {
     color: var(--color-text-white);
   }
-
+  .css-1xrrpwr-MuiTypography-root {
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
   .profile-page {
     &-edit-button {
       background: var(--background-white);
@@ -89,7 +126,7 @@
 
     &-cancel-button {
       color: var(--color-text-black);
-      border-color: #7E7E7E;
+      border-color: #7e7e7e;
 
       &:hover {
         border-color: white;
@@ -130,7 +167,6 @@
       }
     }
   }
-
 
   .navbar-brand {
     color: var(--color-text-black) !important;
@@ -237,7 +273,6 @@
   }
 
   .card-field {
-
     .label,
     .caption {
       color: var(--color-text-black);
@@ -271,7 +306,6 @@
 
 // Styles for the gray theme
 .theme-gray {
-
   .MuiTypography-root {
     color: black;
   }
@@ -308,7 +342,6 @@
       &:hover {
         background-color: #ffffffd2;
       }
-
     }
 
     &-text-field {
@@ -365,7 +398,6 @@
 
 // Styles for the Higgs theme
 .theme-higgs {
-
   .MuiTypography-root {
     background: var(--color-higgs);
     background-clip: text;
@@ -388,7 +420,7 @@
     }
 
     &-cancel-button {
-      border-color: #7E7E7E;
+      border-color: #7e7e7e;
       color: var(--color-text-black);
 
       &:hover {
@@ -438,7 +470,6 @@
       }
     }
   }
-
 
   .wave {
     background: var(--color-higgs);
@@ -571,7 +602,6 @@
   }
 
   .card-field {
-
     .label,
     .caption {
       background: var(--color-higgs);

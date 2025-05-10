@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { colorIcons } from "./color";
 import "./ThemeSelection.scss";
 import { useTheme } from "../../../contexts/ThemeContext";
 function ThemeSelection() {
-  const [color, setColor] = useState<string>(colorIcons[0].photo);
-  const { themeHandler } = useTheme();
+  const { theme, themeHandler } = useTheme();
+  const [color, setColor] = useState<string>(theme?.photo || colorIcons[0].photo);
+
+  useEffect(() => {
+    if (theme?.photo) {
+      setColor(theme.photo);
+    }
+  }, [theme]);
   function selectTheme(theme: string, photo: string) {
     setColor(photo);
     themeHandler(theme);
