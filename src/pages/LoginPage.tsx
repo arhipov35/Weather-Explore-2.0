@@ -2,26 +2,28 @@ import {
   Box,
   Button,
   Container,
-  Divider,
-  Paper,
   TextField,
   Typography,
-  Alert,
+  Paper,
+  Divider,
   IconButton,
-  InputAdornment,
-  CircularProgress,
-  Link,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
   DialogActions,
+  Link,
+  Alert,
+  InputAdornment
 } from "@mui/material";
 import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
+
+import Loader from "../components/shared/Loader/Loader";
 import { useAuth } from "../contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 export function LoginPage() {
   const {
@@ -46,7 +48,7 @@ export function LoginPage() {
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
   const [resetEmailError, setResetEmailError] = useState("");
-
+  const { theme } = useTheme();
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
@@ -114,40 +116,52 @@ export function LoginPage() {
   };
 
   return (
-    <Container component="main" maxWidth="sm" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
+    <Container component="main" maxWidth="sm" sx={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      alignItems: 'center',
+      justifyContent: 'center',
+      py: { xs: 4, sm: 2 }
+    }}>
       <Paper
         elevation={6}
         sx={{
-          p: { xs: 3, sm: 5 },
+          p: { xs: 2.5, sm: 5 },
           width: '100%',
+          maxWidth: { xs: '100%', sm: '450px' },
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          borderRadius: '12px',
+          borderRadius: { xs: '8px', sm: '12px' },
           backgroundColor: '#fafafa',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
+          boxShadow: theme?.boxShadow,
+          mx: 'auto'
         }}
       >
         <Typography
           component="h1"
           variant="h4"
-          sx={{ 
-            mb: 4, 
+          className="theme-typography"
+          sx={{
+            mb: { xs: 2.5, sm: 4 },
             color: '#333',
             fontWeight: 600,
-            letterSpacing: '-0.5px'
+            letterSpacing: '-0.5px',
+            fontSize: { xs: '1.7rem', sm: '2.125rem' }
           }}
         >
           Weather Explore 2.0
         </Typography>
 
-        <Typography 
-          component="h2" 
-          variant="h5" 
-          sx={{ 
-            mb: 3,
+        <Typography
+          component="h2"
+          variant="h5"
+          className="theme-typography"
+          sx={{
+            mb: { xs: 2, sm: 3 },
             color: '#444',
-            fontWeight: 500
+            fontWeight: 500,
+            fontSize: { xs: '1.3rem', sm: '1.5rem' }
           }}
         >
           {isRegister ? "Create an Account" : "Sign In"}
@@ -156,8 +170,8 @@ export function LoginPage() {
         {error && (
           <Alert
             severity="error"
-            sx={{ 
-              mb: 3, 
+            sx={{
+              mb: 3,
               width: "100%",
               borderRadius: '8px',
               '& .MuiAlert-icon': {
@@ -184,7 +198,7 @@ export function LoginPage() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            sx={{ 
+            sx={{
               mb: 3,
               '& .MuiOutlinedInput-root': {
                 borderRadius: '8px',
@@ -212,7 +226,7 @@ export function LoginPage() {
             autoComplete={isRegister ? "new-password" : "current-password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            sx={{ 
+            sx={{
               mb: 2,
               '& .MuiOutlinedInput-root': {
                 borderRadius: '8px',
@@ -244,15 +258,24 @@ export function LoginPage() {
               ),
             }}
           />
-          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+          <Box sx={{ 
+            display: "flex", 
+            flexDirection: { xs: "column", sm: "row" },
+            justifyContent: "space-between", 
+            alignItems: { xs: "flex-start", sm: "center" },
+            width: "100%", 
+            mb: 3,
+            gap: { xs: 1.5, sm: 0 }
+          }}>
             <Link
               component="span"
               variant="body2"
+              className="theme-typography"
               onClick={(e) => {
                 e.preventDefault();
                 setIsResetDialogOpen(true);
               }}
-              sx={{ 
+              sx={{
                 textDecoration: "none",
                 color: '#666',
                 '&:hover': {
@@ -261,16 +284,17 @@ export function LoginPage() {
                 cursor: 'pointer'
               }}
             >
-              Forgot password? 
+              Forgot password?
             </Link>
             <Link
               component="span"
               variant="body2"
+              className="theme-typography"
               onClick={(e) => {
                 e.preventDefault();
                 toggleMode();
               }}
-              sx={{ 
+              sx={{
                 textDecoration: "none",
                 color: '#666',
                 '&:hover': {
@@ -290,13 +314,14 @@ export function LoginPage() {
             loading={isLoading}
             disabled={!email || !password}
             sx={{
-              mt: 2,
-              mb: 3,
-              py: 1.5,
+              mt: { xs: 1.5, sm: 2 },
+              mb: { xs: 2, sm: 3 },
+              py: { xs: 1.2, sm: 1.5 },
               bgcolor: '#444',
               color: 'white',
               boxShadow: 'none',
               borderRadius: '8px',
+              fontSize: { xs: '0.875rem', sm: '0.9375rem' },
               '&:hover': {
                 bgcolor: '#333',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
@@ -311,8 +336,8 @@ export function LoginPage() {
           </LoadingButton>
         </Box>
 
-        <Divider sx={{ width: "100%", mb: 3, color: '#ccc' }}>
-          <Typography variant="body2" sx={{ color: '#888' }}>OR</Typography>
+        <Divider sx={{ width: "100%", mb: { xs: 2, sm: 3 }, color: '#ccc' }}>
+          <Typography className="theme-typography" variant="body2" sx={{ color: '#888' }}>OR</Typography>
         </Divider>
 
         <Button
@@ -322,33 +347,50 @@ export function LoginPage() {
           onClick={handleGoogleLogin}
           disabled={isLoading}
           sx={{
-            py: 1.5,
+            py: { xs: 1.2, sm: 1.5 },
             color: '#444',
             borderColor: '#ddd',
             borderRadius: '8px',
+            fontSize: { xs: '0.875rem', sm: '0.9375rem' },
             '&:hover': {
               borderColor: '#999',
               bgcolor: '#f9f9f9',
             },
             '& .MuiButton-startIcon': {
-              color: '#444'
+              color: '#444',
+              marginRight: { xs: 1, sm: 1.5 }
             }
           }}
         >
-          {isLoading ? <CircularProgress size={24} /> : "Continue with Google"}
+          {isLoading ? <Loader size="small" /> : "Continue with Google"}
         </Button>
       </Paper>
 
-      <Dialog open={isResetDialogOpen} onClose={handleResetDialogClose} PaperProps={{
-        sx: { 
-          borderRadius: '12px',
+      <Dialog 
+        open={isResetDialogOpen} 
+        onClose={handleResetDialogClose}
+        fullWidth
+        maxWidth="xs"
+        PaperProps={{
+        sx: {
+          borderRadius: { xs: '8px', sm: '12px' },
           bgcolor: '#fafafa',
-          p: 1
+          p: { xs: 1, sm: 1.5 },
+          m: { xs: 2, sm: 0 },
+          width: { xs: 'calc(100% - 32px)', sm: '100%' }
         }
       }}>
-        <DialogTitle sx={{ color: '#444' }}>Reset Password</DialogTitle>
+        <DialogTitle className="theme-typography" sx={{ 
+          color: '#444',
+          fontSize: { xs: '1.2rem', sm: '1.25rem' },
+          pt: { xs: 1.5, sm: 2 }
+        }}>Reset Password</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{ color: '#666', mb: 2 }}>
+          <DialogContentText className="theme-typography" sx={{ 
+            color: '#666', 
+            mb: 2,
+            fontSize: { xs: '0.875rem', sm: '1rem' } 
+          }}>
             Enter your email address and we will send you a link to reset your password.
           </DialogContentText>
           {isResetEmailSent ? (
@@ -366,7 +408,7 @@ export function LoginPage() {
               onChange={(e) => setResetEmail(e.target.value)}
               error={!!resetEmailError}
               helperText={resetEmailError}
-              sx={{ 
+              sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '8px',
                   '& fieldset': {
@@ -386,11 +428,20 @@ export function LoginPage() {
             />
           )}
         </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 3 }}>
-          <Button 
-            onClick={handleResetDialogClose} 
-            sx={{ 
+        <DialogActions sx={{ 
+          px: { xs: 2, sm: 3 }, 
+          pb: { xs: 2, sm: 3 },
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: 'stretch',
+          gap: { xs: 1, sm: 0 }
+        }}>
+          <Button
+            onClick={handleResetDialogClose}
+            className="theme-typography"
+            fullWidth={window.innerWidth < 600}
+            sx={{
               color: '#666',
+              order: { xs: 2, sm: 1 },
               '&:hover': {
                 bgcolor: '#f5f5f5',
                 color: '#444'
@@ -403,9 +454,11 @@ export function LoginPage() {
             loading={isLoading}
             disabled={isResetEmailSent}
             onClick={handleForgotPassword}
+            fullWidth={window.innerWidth < 600}
             sx={{
               bgcolor: '#444',
               color: 'white',
+              order: { xs: 1, sm: 2 },
               '&:hover': {
                 bgcolor: '#333',
               },

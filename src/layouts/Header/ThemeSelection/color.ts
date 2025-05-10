@@ -5,6 +5,7 @@ export type ColorIcon = {
   range: string;
   colorIcon?: string;
   sentIcon?: string;
+  boxShadow?: string;
 };
 export const colorIcons: ColorIcon[] = [
   {
@@ -14,6 +15,7 @@ export const colorIcons: ColorIcon[] = [
     range: "lightgrey",
     colorIcon: "var(--Gray-6, #7E7E7E)",
     sentIcon: "/src/assets/img/sent-gray.svg",
+    boxShadow: '0 0 15px rgba(92, 92, 92, 0.56)'
   },
   {
     description: "Black",
@@ -22,6 +24,7 @@ export const colorIcons: ColorIcon[] = [
     range: "white",
     colorIcon: "white",
     sentIcon: "/src/assets/img/sent-white.svg",
+    boxShadow: '0 0 15px rgb(255, 253, 253)'
   },
   {
     description: "Gray",
@@ -30,6 +33,7 @@ export const colorIcons: ColorIcon[] = [
     range: "white",
     colorIcon: "black",
     sentIcon: "/src/assets/img/sent-black.svg",
+    boxShadow: '0 0 15px rgba(92, 92, 92, 0.56)'
   },
   {
     description: "Higgs",
@@ -38,5 +42,6 @@ export const colorIcons: ColorIcon[] = [
     range: "white",
     colorIcon: "white",
     sentIcon: "/src/assets/img/sent-gold.svg",
+    boxShadow: '0 0 15px rgb(255, 253, 253)'
   },
 ];

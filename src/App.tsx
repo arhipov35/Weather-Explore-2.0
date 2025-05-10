@@ -7,7 +7,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { RefetchProvider } from "./contexts/RefetchContext";
 import { WeatherProvider } from "./contexts/WeatherContext";
 import { ThemeHandler, ThemeProvider } from "./contexts/ThemeContext";
-
+import Loader from "./components/shared/Loader/Loader";
 
 const HomePage = lazy(() => import("./pages/Home-page/HomePage").then(module => ({
   default: module.HomePage
@@ -15,15 +15,15 @@ const HomePage = lazy(() => import("./pages/Home-page/HomePage").then(module => 
 const LoginPage = lazy(() => import("./pages/LoginPage").then(module => ({
   default: module.LoginPage
 })));
-const ProfilePage = lazy(() => import("./pages/ProfilePage").then(module => ({
+const ProfilePage = lazy(() => import("./pages/ProfilePage/ProfilePage").then(module => ({
   default: module.ProfilePage
 })));
 
 
+
+
 const LoadingFallback = () => (
-  <div className="loading-container d-flex justify-content-center align-items-center vh-100">
-    <h2 className="text-primary">Loading...</h2>
-  </div>
+  <Loader fullScreen size="medium" text="Loading..." />
 );
 
 

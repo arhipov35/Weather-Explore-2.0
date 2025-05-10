@@ -1,4 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
+import Loader from './shared/Loader/Loader';
 import { useAuth } from '../contexts/AuthContext';
 
 interface ProtectedRouteProps {
@@ -10,7 +11,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const location = useLocation();
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return <Loader text="Checking authentication..." />;
   }
 
   if (!user) {

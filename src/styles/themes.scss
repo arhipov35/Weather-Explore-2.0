@@ -60,10 +60,12 @@
   .MuiTypography-root {
     color: var(--color-text-white);
   }
+
   .css-1xrrpwr-MuiTypography-root {
     -webkit-text-fill-color: black !important;
     color: black !important;
   }
+
   .profile-page {
     &-edit-button {
       background: var(--background-white);
@@ -107,8 +109,19 @@
 
 // Styles for the black theme
 .theme-black {
+  .first-card {
+    border-color: var(--border-color-black) !important;
+  }
+  .loader-text {
+    color: var(--color-text-black);
+  }
+
   .MuiTypography-root {
     color: white;
+  }
+
+  .theme-typography {
+    color: black;
   }
 
   .css-1xrrpwr-MuiTypography-root {
@@ -398,6 +411,16 @@
 
 // Styles for the Higgs theme
 .theme-higgs {
+  .first-card {
+    border-color: var(--border-color-higgs) !important;
+  }
+  .loader-text {
+    background: var(--color-higgs);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .MuiTypography-root {
     background: var(--color-higgs);
     background-clip: text;

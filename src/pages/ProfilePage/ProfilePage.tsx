@@ -12,8 +12,8 @@ import {
   Container,
 } from '@mui/material';
 import { Edit as EditIcon, PhotoCamera } from '@mui/icons-material';
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
+import { useAuth } from '../../contexts/AuthContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './ProfilePage.scss';

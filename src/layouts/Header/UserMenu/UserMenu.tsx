@@ -39,17 +39,17 @@ function UserMenu({ user, onLogout, onOpenProfile }: UserMenuProps) {
         </IconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: "45px" }}
+        sx={{ mt: "52px" }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
           vertical: "top",
-          horizontal: "right",
+          horizontal: "center",
         }}
         keepMounted
         transformOrigin={{
           vertical: "top",
-          horizontal: "right",
+          horizontal: "center",
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
