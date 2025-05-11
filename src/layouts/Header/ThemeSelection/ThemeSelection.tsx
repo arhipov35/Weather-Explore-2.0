@@ -17,7 +17,7 @@ function ThemeSelection() {
   }
   return (
     <>
-      <div className="dropdown">
+      <div className="dropdown" data-tour="theme-selection">
         <div
           className="dropdown-toggle dropdown-style"
           data-bs-toggle="dropdown"

@@ -21,7 +21,7 @@ export function FirstCard({
   return (
     <>
       <div className="first-card-area page">
-        <div className="first-card">
+        <div className="first-card" data-tour="first-card">
           <form onSubmit={onSubmit}>
             <CustomInput
               value={cityInput}

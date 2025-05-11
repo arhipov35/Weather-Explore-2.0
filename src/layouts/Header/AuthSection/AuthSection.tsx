@@ -7,19 +7,23 @@ export function AuthSection() {
   const { user, signInWithGoogle, logout } = useAuth();
   const navigate = useNavigate();
 
-  return user ? (
-    <UserMenu 
-      user={user}
-      onLogout={logout}
-      onOpenProfile={() => navigate("/profile")}
-    />
-  ) : (
-    <Button 
-      color="inherit" 
-      variant="outlined" 
-      onClick={signInWithGoogle}
-    >
-      Sign in with Google
-    </Button>
+  return (
+    <div className="auth-section">
+      {user ? (
+        <UserMenu 
+          user={user}
+          onLogout={logout}
+          onOpenProfile={() => navigate("/profile")}
+        />
+      ) : (
+        <Button 
+          color="inherit" 
+          variant="outlined" 
+          onClick={signInWithGoogle}
+        >
+          Sign in with Google
+        </Button>
+      )}
+    </div>
   );
 }

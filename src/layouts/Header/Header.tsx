@@ -14,11 +14,11 @@ function Header() {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <div className="navbar-section">
-            <div className="navbar-theme">
+            <div className="navbar-theme" data-tour="navbar-theme">
               <ThemeSelection />
             </div>
           </div>
-          <Link onClick={toggle} className="navbar-brand" to="/">
+          <Link onClick={toggle} className="navbar-brand" to="/" data-tour="logo-refresh">
             Weather Explore 2.0
           </Link>
           <button
@@ -53,6 +53,7 @@ function Header() {
                   to="https://forms.gle/QwwQSBZSChvYcfqR8"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-tour="feedback-icon"
                 >
                   <img
                     className="feedback-icon"

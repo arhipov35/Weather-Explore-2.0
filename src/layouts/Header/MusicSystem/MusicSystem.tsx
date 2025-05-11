@@ -45,7 +45,7 @@ function MusicSystem() {
         volume={volume / 100}
         onEnded={handleSongEnd}
       />
-      <div className="music-system">
+      <div className="music-system" data-tour="music-system">
         <div className="music-sytem-range">
           <input
             className="sound-size"

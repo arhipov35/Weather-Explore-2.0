@@ -7,6 +7,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { RefetchProvider } from "./contexts/RefetchContext";
 import { WeatherProvider } from "./contexts/WeatherContext";
 import { ThemeHandler, ThemeProvider } from "./contexts/ThemeContext";
+import { JoyrideProvider } from "./contexts/JoyrideContext";
 import Loader from "./components/shared/Loader/Loader";
 
 const HomePage = lazy(() => import("./pages/Home-page/HomePage").then(module => ({
@@ -33,9 +34,10 @@ function App() {
       <ThemeProvider>
         <ThemeHandler />
         <AuthProvider>
-          <RefetchProvider>
-            <WeatherProvider>
-              <Routes>
+          <JoyrideProvider>
+            <RefetchProvider>
+              <WeatherProvider>
+                <Routes>
                 {/* Public route without layout */}
                 <Route
                   path="/login"
@@ -73,8 +75,9 @@ function App() {
                 {/* Catch all route */}
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-            </WeatherProvider>
-          </RefetchProvider>
+              </WeatherProvider>
+            </RefetchProvider>
+          </JoyrideProvider>
         </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
