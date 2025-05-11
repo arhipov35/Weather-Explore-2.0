@@ -5,13 +5,10 @@ import App from "./App.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/_reset.scss";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Provider } from "react-redux";
-import { store } from "./store.ts";
-
+import "./styles/themes.scss";
+import './styles/icons.scss';
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </StrictMode>
 );

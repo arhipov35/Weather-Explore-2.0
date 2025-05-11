@@ -4,23 +4,39 @@
 header {
   .navbar-section {
     @include mH.flex-align-center;
+  }
 
-    .navbar-brand {
-      color: vH.$third-color;
-      text-align: center;
-      font-family: vH.$font-family;
-      font-size: 1.25rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.25;
-      /* 100% */
-      letter-spacing: 0.01875rem;
+  .navbar-brand {
+    color: vH.$third-color;
+    text-align: center;
+    font-family: vH.$font-family;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25;
+    /* 100% */
+    letter-spacing: 0.01875rem;
+    margin-right: 0 !important;
+
+    // Прибираємо зміну кольору при наведенні та інших станах посилання
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited,
+    &:focus-visible {
+      color: vH.$third-color; // Додаємо !important для перевизначення стилів Bootstrap
+      text-decoration: none;
     }
   }
 
   .navbar-nav {
     @include mH.flex-align-center;
     gap: 1em;
+
+    .feedback-icon {
+      width: vH.$size-icon;
+      height: vH.$size-icon;
+    }
   }
 
   .navbar-toggler {
@@ -87,5 +103,4 @@ header {
       }
     }
   }
-
 }

@@ -4,12 +4,13 @@ import "./MusicSystem.scss";
 import useAudioPlayer from "../../../hooks/useAudioPlayer";
 import { useCallback, useEffect, useState } from "react";
 import { playlist } from "./playlist";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 function MusicSystem() {
   const [currentSong, setCurrentSong] = useState<typeof playlist[0] | null>(null);
   const [playedSongs, setPlayedSongs] = useState<Set<string>>(new Set());
   const { isPlaying, volume, onVolumeChange, togglePlayback } = useAudioPlayer();
-
+  const { theme } = useTheme();
   const selectRandomSong = useCallback(() => {
     if (playedSongs.size >= playlist.length - 1) {
       setPlayedSongs(new Set([currentSong?.URL || ""]));
@@ -44,7 +45,7 @@ function MusicSystem() {
         volume={volume / 100}
         onEnded={handleSongEnd}
       />
-      <div className="music-system">
+      <div className="music-system" data-tour="music-system">
         <div className="music-sytem-range">
           <input
             className="sound-size"
@@ -54,7 +55,7 @@ function MusicSystem() {
             value={volume}
             onChange={onVolumeChange}
             style={{
-              background: `linear-gradient(to right, grey ${volume}%, lightgrey ${volume}%)`,
+              background: `linear-gradient(to right, grey ${volume}%, ${theme?.range || 'lightgrey'} ${volume}%)`,
             }}
           />
         </div>

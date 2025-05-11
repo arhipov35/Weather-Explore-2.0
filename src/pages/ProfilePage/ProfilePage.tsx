@@ -12,12 +12,15 @@ import {
   Container,
 } from '@mui/material';
 import { Edit as EditIcon, PhotoCamera } from '@mui/icons-material';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import './ProfilePage.scss';
 
 export function ProfilePage() {
   const { user } = useAuth();
+  const { theme } = useTheme();
   const [isEditing, setIsEditing] = useState(false);
   const [displayName, setDisplayName] = useState(user?.displayName || '');
   const [message, setMessage] = useState('');
@@ -72,19 +75,17 @@ export function ProfilePage() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ p: 4, mt: 4, borderRadius: 2 }}>
+    <Container maxWidth="sm" className={`theme-${theme?.description?.toLowerCase() || 'white'}`}>
+      <Paper
+        elevation={3}
+        className="profile-page-paper"
+      >
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
           <Box sx={{ position: 'relative' }}>
             <Avatar
               src={user?.photoURL || undefined}
               alt={user?.displayName || 'User'}
-              sx={{
-                width: 120,
-                height: 120,
-                border: '4px solid #fff',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-              }}
+              className="profile-page-avatar"
             />
             {isEditing && (
               <>
@@ -98,14 +99,7 @@ export function ProfilePage() {
                 <label htmlFor="photo-upload">
                   <IconButton
                     component="span"
-                    sx={{
-                      position: 'absolute',
-                      bottom: 0,
-                      right: 0,
-                      backgroundColor: 'primary.main',
-                      color: 'white',
-                      '&:hover': { backgroundColor: 'primary.dark' },
-                    }}
+                    className="profile-page-camera-button"
                   >
                     <PhotoCamera />
                   </IconButton>
@@ -122,20 +116,20 @@ export function ProfilePage() {
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 variant="outlined"
-                sx={{ mt: 2 }}
+                className="profile-page-text-field"
               />
               <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
                 <Button
                   variant="contained"
                   onClick={handleUpdateProfile}
-                  sx={{ minWidth: 100 }}
+                  className="profile-page-save-button"
                 >
                   Save
                 </Button>
                 <Button
                   variant="outlined"
                   onClick={() => setIsEditing(false)}
-                  sx={{ minWidth: 100 }}
+                  className="profile-page-cancel-button"
                 >
                   Cancel
                 </Button>
@@ -143,17 +137,17 @@ export function ProfilePage() {
             </>
           ) : (
             <>
-              <Typography variant="h4" component="h1" sx={{ fontWeight: 'medium' }}>
+              <Typography variant="h5" component="h1">
                 {user?.displayName || 'User'}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body1" color="textSecondary">
                 {user?.email}
               </Typography>
               <Button
+                variant="contained"
                 startIcon={<EditIcon />}
-                variant="outlined"
                 onClick={() => setIsEditing(true)}
-                sx={{ mt: 2 }}
+                className="profile-page-edit-button"
               >
                 Edit Profile
               </Button>
@@ -167,11 +161,7 @@ export function ProfilePage() {
         autoHideDuration={6000}
         onClose={() => setOpenSnackbar(false)}
       >
-        <Alert
-          onClose={() => setOpenSnackbar(false)}
-          severity={severity}
-          sx={{ width: '100%' }}
-        >
+        <Alert onClose={() => setOpenSnackbar(false)} severity={severity}>
           {message}
         </Alert>
       </Snackbar>

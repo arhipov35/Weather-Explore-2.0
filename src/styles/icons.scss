@@ -1,0 +1,7 @@
+@use "../../src/assets/styles/variables" as vIc;
+@use "../../src/assets/styles/mixins" as mIc;
+
+.icon-nav {
+    width: vIc.$size-icon;
+    height: vIc.$size-icon;
+}

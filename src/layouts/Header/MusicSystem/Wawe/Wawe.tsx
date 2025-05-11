@@ -13,7 +13,7 @@ function Wave({ isPlaying }: Props) {
   ];
 
   useEffect(() => {
-    const colors = ["rgba(0, 0, 0, 0.05)", "black", "rgba(0, 0, 0, 0.10)"];
+    const colors = ["rgba(0, 0, 0, 0.15)", "black", "rgba(0, 0, 0, 0.25)"];
     waveRefs.forEach((waveRef, index) => {
       if (waveRef.current) {
         const wavePath = waveRef.current.querySelector(".wave-path");

@@ -1,6 +1,7 @@
-import { WeatherData } from "../../../services/openWeather";
+import { WeatherData } from "../../../types/weather.types";
 import { WeatherIcon } from "../../shared/WeatherIcon/WeatherIcon";
 import "./ForecastCard.scss";
+import { BackIcon } from "../../shared/icons";
 
 interface ForecastCardProps {
   onCancel: () => void;
@@ -17,18 +18,18 @@ interface DailyForecast {
 
 function ForecastCard({ onCancel, weather }: ForecastCardProps) {
   const getNext4DaysForecast = (): DailyForecast[] => {
+    const today = new Date();
+    const todayString = today.toISOString().split("T")[0];
+    
     const dailyForecasts: { [key: string]: DailyForecast } = {};
-    weather.list.forEach((item, index) => {
-      if (index === 0) return;
-
+    
+    weather.list.forEach((item) => {
       const date = new Date(item.dt * 1000);
-
       const dateString = date.toISOString().split("T")[0];
-
-      if (
-        !dailyForecasts[dateString] ||
-        (date.getHours() >= 12 && date.getHours() <= 15)
-      ) {
+      
+      if (dateString === todayString) return;
+      
+      if (date.getHours() >= 11 && date.getHours() <= 13) {
         const dayNames = [
           "Sunday",
           "Monday",
@@ -38,7 +39,7 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
           "Friday",
           "Saturday",
         ];
-
+        
         dailyForecasts[dateString] = {
           date: dateString,
           dayName: dayNames[date.getDay()],
@@ -48,8 +49,46 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
         };
       }
     });
-
-    return Object.values(dailyForecasts).slice(0, 4);
+    
+    weather.list.forEach((item) => {
+      const date = new Date(item.dt * 1000);
+      const dateString = date.toISOString().split("T")[0];
+      
+      if (dateString === todayString) return;
+      
+      if (!dailyForecasts[dateString]) {
+        const dayNames = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        
+        dailyForecasts[dateString] = {
+          date: dateString,
+          dayName: dayNames[date.getDay()],
+          temp: item.main.temp,
+          feels_like: item.main.feels_like,
+          weatherMain: item.weather[0].main,
+        };
+      }
+    });
+    
+    const sortedForecasts = Object.values(dailyForecasts).sort((a, b) => 
+      a.date.localeCompare(b.date)
+    );
+    
+    const forecasts = sortedForecasts.slice(0, 4);
+    
+    console.log("Вибрані прогнози:", forecasts.map(f => ({
+      дата: f.date,
+      день: f.dayName
+    })));
+    
+    return forecasts;
   };
 
   const forecastData = getNext4DaysForecast();
@@ -58,7 +97,7 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
     <>
       <div className="forecast">
         <div className="forecast__back-btn" onClick={onCancel}>
-          <img src="/src/assets/img/back.svg" alt="back" />
+          <BackIcon />
         </div>
         {forecastData.map((day, index) => (
           <div key={index} className="forecast__day">

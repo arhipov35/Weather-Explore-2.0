@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CustomInput } from "../../shared/CustomInput/CustomInput";
 import { useWeather } from "../../../contexts/WeatherContext";
 import "./AddCard.scss";
+import { BackIcon } from "../../shared/icons";
 
 interface AddCardProps {
   index: number;
@@ -28,8 +29,6 @@ export function AddCard({ index, onCancel }: AddCardProps) {
     }
   };
 
-  // Функція для додавання міста, яка використовується як при відправці форми, 
-  // так і при виборі міста зі списку
   const handleAddCity = async (city: string) => {
     if (city.trim()) {
       try {
@@ -38,7 +37,7 @@ export function AddCard({ index, onCancel }: AddCardProps) {
           setLocalError(result);
           return false;
         } else {
-          setCityInput(""); // Очищаємо поле після успішного додавання
+          setCityInput(""); 
           return true;
         }
       } catch (err) {
@@ -54,7 +53,7 @@ export function AddCard({ index, onCancel }: AddCardProps) {
   return (
     <div className="add-card">
       <div className="back-icon-add-card" onClick={onCancel}>
-        <img src="/src/assets/img/back.svg" alt="back" />
+        <BackIcon />
       </div>
       <form onSubmit={handleSubmit}>
         <CustomInput
@@ -63,7 +62,7 @@ export function AddCard({ index, onCancel }: AddCardProps) {
           placeholder="Enter city name"
           error={!!localError}
           errorMessage={localError}
-          onCitySelect={handleAddCity} // Додаємо обробник вибору міста
+          onCitySelect={handleAddCity} 
         />
       </form>
     </div>
