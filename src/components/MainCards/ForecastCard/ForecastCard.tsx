@@ -18,18 +18,18 @@ interface DailyForecast {
 
 function ForecastCard({ onCancel, weather }: ForecastCardProps) {
   const getNext4DaysForecast = (): DailyForecast[] => {
+    const today = new Date();
+    const todayString = today.toISOString().split("T")[0];
+    
     const dailyForecasts: { [key: string]: DailyForecast } = {};
-    weather.list.forEach((item, index) => {
-      if (index === 0) return;
-
+    
+    weather.list.forEach((item) => {
       const date = new Date(item.dt * 1000);
-
       const dateString = date.toISOString().split("T")[0];
-
-      if (
-        !dailyForecasts[dateString] ||
-        date.getHours() === 12
-      ) {
+      
+      if (dateString === todayString) return;
+      
+      if (date.getHours() >= 11 && date.getHours() <= 13) {
         const dayNames = [
           "Sunday",
           "Monday",
@@ -39,10 +39,7 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
           "Friday",
           "Saturday",
         ];
-
-        // Записуємо в консоль дату та час вибраного прогнозу
-        console.log(`Прогноз для ${dateString}, час: ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`);
-
+        
         dailyForecasts[dateString] = {
           date: dateString,
           dayName: dayNames[date.getDay()],
@@ -52,14 +49,45 @@ function ForecastCard({ onCancel, weather }: ForecastCardProps) {
         };
       }
     });
-
-    // Додатковий лог для перевірки остаточних вибраних прогнозів
-    const forecasts = Object.values(dailyForecasts).slice(0, 4);
+    
+    weather.list.forEach((item) => {
+      const date = new Date(item.dt * 1000);
+      const dateString = date.toISOString().split("T")[0];
+      
+      if (dateString === todayString) return;
+      
+      if (!dailyForecasts[dateString]) {
+        const dayNames = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        
+        dailyForecasts[dateString] = {
+          date: dateString,
+          dayName: dayNames[date.getDay()],
+          temp: item.main.temp,
+          feels_like: item.main.feels_like,
+          weatherMain: item.weather[0].main,
+        };
+      }
+    });
+    
+    const sortedForecasts = Object.values(dailyForecasts).sort((a, b) => 
+      a.date.localeCompare(b.date)
+    );
+    
+    const forecasts = sortedForecasts.slice(0, 4);
+    
     console.log("Вибрані прогнози:", forecasts.map(f => ({
       дата: f.date,
       день: f.dayName
     })));
-
+    
     return forecasts;
   };
 
