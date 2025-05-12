@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { WeatherCard } from "./WeatherCard/WeatherCard";
 import { CardHover } from "./CardHover/CardHover";
 import { useWeather } from "../../contexts/WeatherContext";
@@ -7,11 +7,15 @@ import "./MainCards.scss";
 
 
 
-export function MainCards() {
+
+function MainCardsComponent() {
   const { cities, deleteCity } = useWeather();
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const cityMap = new Map(cities.map((city) => [city.index, city]));
+  const cityMap = useMemo(() => 
+    new Map(cities.map((city) => [city.index, city])),
+    [cities]
+  );
   
   return (
     <div className="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 g-4" >
@@ -40,3 +44,5 @@ export function MainCards() {
     </div>
   );
 }
+
+export const MainCards = React.memo(MainCardsComponent);

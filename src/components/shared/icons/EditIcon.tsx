@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface EditIconProps {
@@ -7,7 +8,7 @@ interface EditIconProps {
   onClick?: () => void;
 }
 
-export const EditIcon = ({ 
+const EditIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -41,5 +42,7 @@ export const EditIcon = ({
     </svg>
   );
 };
+
+export const EditIcon = React.memo(EditIconComponent);
 
 export default EditIcon;

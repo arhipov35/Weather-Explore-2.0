@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface ForecastIconProps {
@@ -7,7 +8,7 @@ interface ForecastIconProps {
   onClick?: () => void;
 }
 
-export const ForecastIcon = ({ 
+const ForecastIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -45,5 +46,7 @@ export const ForecastIcon = ({
     </svg>
   );
 };
+
+export const ForecastIcon = React.memo(ForecastIconComponent);
 
 export default ForecastIcon;

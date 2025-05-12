@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface DeleteIconProps {
@@ -7,7 +8,7 @@ interface DeleteIconProps {
   onClick?: () => void;
 }
 
-export const DeleteIcon = ({ 
+const DeleteIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -35,5 +36,7 @@ export const DeleteIcon = ({
     </svg>
   );
 };
+
+export const DeleteIcon = React.memo(DeleteIconComponent);
 
 export default DeleteIcon;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface HumidityIconProps {
@@ -7,7 +8,7 @@ interface HumidityIconProps {
   onClick?: () => void;
 }
 
-export const HumidityIcon = ({ 
+const HumidityIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -41,5 +42,7 @@ export const HumidityIcon = ({
     </svg>
   );
 };
+
+export const HumidityIcon = React.memo(HumidityIconComponent);
 
 export default HumidityIcon;

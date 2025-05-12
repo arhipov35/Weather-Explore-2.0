@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { debounce } from 'lodash';
 import "./CustomInput.scss";
 import country from "../../../assets/data/countries.json";
 interface CustomInputProps {
@@ -30,27 +31,43 @@ export function CustomInput({
 
   const [cities, setCities] = useState<Country>({});
 
-  useEffect(() => {
-    if (!value.trim()) {
-      setCities({});
-      return;
-    }
-    const results: Country = {};
-
-    for (const [countryName, cityList] of Object.entries(country)) {
-      if (cityList) {
-        const matches = cityList.filter(city =>
-          city.toLowerCase().startsWith(value.toLowerCase())
-        );
-
-        if (matches.length > 0) {
-          results[countryName] = matches;
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((searchValue: string) => {
+        if (!searchValue.trim()) {
+          setCities({});
+          return;
         }
-      }
-    }
-    setCities(results);
-  }, [value]);
-  
+
+        const results: Country = {};
+        const searchLower = searchValue.toLowerCase();
+
+        for (const [countryName, cityList] of Object.entries(country)) {
+          if (cityList) {
+            const matches = cityList.filter(city =>
+              city.toLowerCase().startsWith(searchLower)
+            );
+
+            if (matches.length > 0) {
+              results[countryName] = matches;
+            }
+          }
+        }
+
+        setCities(results);
+      }, 300),
+    []
+  );
+
+  useEffect(() => {
+    debouncedSearch(value);
+
+    
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [value, debouncedSearch]);
+
   return (
     <div className="card-field">
       <p className="label">{labelText}</p>
@@ -68,7 +85,7 @@ export function CustomInput({
               cityList && cityList.map((city) => (
                 <li
                   key={`${country}-${city}`}
-                  onClick={() => {onCitySelect?.(city)}}
+                  onClick={() => { onCitySelect?.(city) }}
                 >
                   {city}, {country}
                 </li>
