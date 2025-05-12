@@ -14,7 +14,7 @@ export const colorIcons: ColorIcon[] = [
     background: "white",
     range: "lightgrey",
     colorIcon: "var(--Gray-6, #7E7E7E)",
-    sentIcon: "/src/assets/img/sent-gray.svg",
+    sentIcon: "/src/assets/img/imgIcon/sent-gray.svg",
     boxShadow: '0 0 15px rgba(92, 92, 92, 0.56)'
   },
   {
@@ -23,7 +23,7 @@ export const colorIcons: ColorIcon[] = [
     background: "black",
     range: "white",
     colorIcon: "white",
-    sentIcon: "/src/assets/img/sent-white.svg",
+    sentIcon: "/src/assets/img/imgIcon/sent-white.svg",
     boxShadow: '0 0 15px rgb(255, 253, 253)'
   },
   {
@@ -32,7 +32,7 @@ export const colorIcons: ColorIcon[] = [
     background: "var(--Gray-3, #D7D7D7)",
     range: "white",
     colorIcon: "black",
-    sentIcon: "/src/assets/img/sent-black.svg",
+    sentIcon: "/src/assets/img/imgIcon/sent-black.svg",
     boxShadow: '0 0 15px rgba(92, 92, 92, 0.56)'
   },
   {
@@ -41,7 +41,7 @@ export const colorIcons: ColorIcon[] = [
     background: "black",
     range: "white",
     colorIcon: "white",
-    sentIcon: "/src/assets/img/sent-gold.svg",
+    sentIcon: "/src/assets/img/imgIcon/sent-gold.svg",
     boxShadow: '0 0 15px rgb(255, 253, 253)'
   },
 ];
