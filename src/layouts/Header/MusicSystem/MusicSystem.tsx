@@ -5,6 +5,7 @@ import useAudioPlayer from "../../../hooks/useAudioPlayer";
 import { useCallback, useEffect, useState } from "react";
 import { playlist } from "./playlist";
 import { useTheme } from "../../../contexts/ThemeContext";
+import { Tooltip } from "@mui/material";
 
 function MusicSystem() {
   const [currentSong, setCurrentSong] = useState<typeof playlist[0] | null>(null);
@@ -13,14 +14,14 @@ function MusicSystem() {
   const { theme } = useTheme();
   const selectRandomSong = useCallback(() => {
     if (playedSongs.size >= playlist.length - 1) {
-      setPlayedSongs(new Set([currentSong?.URL || ""]));
+      setPlayedSongs(new Set([currentSong?.url || ""]));
     }
 
-    const availableSongs = playlist.filter((song) => !playedSongs.has(song.URL));
+    const availableSongs = playlist.filter((song) => !playedSongs.has(song.url));
     const randomIndex = Math.floor(Math.random() * availableSongs.length);
     const selectedSong = availableSongs[randomIndex];
 
-    setPlayedSongs((prev) => new Set([...prev, selectedSong.URL]));
+    setPlayedSongs((prev) => new Set([...prev, selectedSong.url]));
 
     return selectedSong;
   }, [playedSongs, currentSong]);
@@ -28,7 +29,7 @@ function MusicSystem() {
   useEffect(() => {
     const firstSong = playlist[Math.floor(Math.random() * playlist.length)];
     setCurrentSong(firstSong);
-    setPlayedSongs(new Set([firstSong.URL]));
+    setPlayedSongs(new Set([firstSong.url]));
   }, []);
 
   const handleSongEnd = useCallback(() => {
@@ -37,7 +38,7 @@ function MusicSystem() {
   return (
     <>
       <ReactPlayer
-        url={currentSong?.URL}
+        url={currentSong?.url}
         playing={isPlaying}
         controls={false}
         width="0"
@@ -59,12 +60,14 @@ function MusicSystem() {
             }}
           />
         </div>
-        <div
-          style={{ display: "inline-block", cursor: "pointer" }}
-          onClick={togglePlayback}
-        >
-          <Wave isPlaying={isPlaying} />
-        </div>
+        <Tooltip title={currentSong?.name || 'No song playing'}>
+          <div
+            style={{ display: "inline-block", cursor: "pointer" }}
+            onClick={togglePlayback}
+          >
+            <Wave isPlaying={isPlaying} />
+          </div>
+        </Tooltip>
       </div>
     </>
   );
