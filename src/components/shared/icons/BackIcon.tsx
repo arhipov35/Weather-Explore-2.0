@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface BackIconProps {
@@ -7,7 +8,7 @@ interface BackIconProps {
   onClick?: () => void;
 }
 
-export const BackIcon = ({ 
+const BackIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -35,5 +36,7 @@ export const BackIcon = ({
     </svg>
   );
 };
+
+export const BackIcon = React.memo(BackIconComponent);
 
 export default BackIcon;

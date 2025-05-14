@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface WindIconProps {
@@ -7,7 +8,7 @@ interface WindIconProps {
   onClick?: () => void;
 }
 
-export const WindIcon = ({ 
+const WindIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -44,5 +45,7 @@ export const WindIcon = ({
     </svg>
   );
 };
+
+export const WindIcon = React.memo(WindIconComponent);
 
 export default WindIcon;

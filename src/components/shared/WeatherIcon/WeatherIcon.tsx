@@ -1,5 +1,5 @@
 import { weatherIcons } from "./weather";
-import defaultPhoto from "../../../assets/img/cloud.svg";
+import defaultPhoto from "../../../assets/img/imgwepb/clouds.webp";
 interface WeatherIcon {
   description: string;
   width?: number | string;

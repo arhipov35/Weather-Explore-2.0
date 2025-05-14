@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
 
 interface LocationIconProps {
@@ -7,7 +8,7 @@ interface LocationIconProps {
   onClick?: () => void;
 }
 
-export const LocationIcon = ({ 
+const LocationIconComponent = ({ 
   color, 
   size = 24, 
   className = 'icon-nav',
@@ -43,5 +44,7 @@ export const LocationIcon = ({
     </svg>
   );
 };
+
+export const LocationIcon = React.memo(LocationIconComponent);
 
 export default LocationIcon;

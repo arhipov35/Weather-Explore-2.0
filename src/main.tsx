@@ -7,6 +7,7 @@ import "./assets/styles/_reset.scss";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "./styles/themes.scss";
 import './styles/icons.scss';
+import './styles/media.scss';
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
